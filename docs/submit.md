@@ -94,7 +94,7 @@ async function submitCommunity() {
 
 베드락 에디션 커뮤니티를 등록하고 많은 사람들과 공유하세요!
 
-<ClientOnly>
+<div>
   <div v-if="authLoading" class="loading">
     로딩 중...
   </div>
@@ -168,13 +168,13 @@ async function submitCommunity() {
       {{ submitting ? '등록 중...' : '커뮤니티 등록하기' }}
     </button>
   </div>
+</div>
 
-  <AuthModal
-    :show="showAuthModal"
-    @close="showAuthModal = false"
-    initialMode="login"
-  />
-</ClientOnly>
+<AuthModal
+  :show="showAuthModal"
+  @close="showAuthModal = false"
+  initialMode="login"
+/>
 
 <style scoped>
 .submit-form {

@@ -33,7 +33,7 @@ onMounted(async () => {
 
 # 커뮤니티 목록
 
-<ClientOnly>
+<div>
   <div v-if="loading" class="loading">
     로딩 중...
   </div>
@@ -47,21 +47,21 @@ onMounted(async () => {
   </div>
 
   <div v-else class="community-list">
-  <div v-for="community in communities" :key="community.id" class="community-card">
-    <h3>{{ community.name }}</h3>
-    <p class="description">{{ community.description }}</p>
-    <div class="meta">
-      <span class="category">{{ community.category }}</span>
-      <span v-if="community.tags" class="tags">
-        <span v-for="tag in community.tags" :key="tag" class="tag">{{ tag }}</span>
-      </span>
+    <div v-for="community in communities" :key="community.id" class="community-card">
+      <h3>{{ community.name }}</h3>
+      <p class="description">{{ community.description }}</p>
+      <div class="meta">
+        <span class="category">{{ community.category }}</span>
+        <span v-if="community.tags" class="tags">
+          <span v-for="tag in community.tags" :key="tag" class="tag">{{ tag }}</span>
+        </span>
+      </div>
+      <a v-if="community.link" :href="community.link" target="_blank" class="link">
+        방문하기 →
+      </a>
     </div>
-    <a v-if="community.link" :href="community.link" target="_blank" class="link">
-      방문하기 →
-    </a>
   </div>
-  </div>
-</ClientOnly>
+</div>
 
 <style scoped>
 .loading, .error, .empty {

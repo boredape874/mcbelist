@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm install)",
-      "Bash(npm run docs:build:*)"
+      "Bash(npm run docs:build:*)",
+      "Bash(git add:*)"
     ]
   }
 }
