@@ -1,0 +1,60 @@
+/**
+ * MCBeList Custom Styles
+ */
+
+:root {
+  --vp-c-brand: #00aa00;
+  --vp-c-brand-light: #33bb33;
+  --vp-c-brand-lighter: #66cc66;
+  --vp-c-brand-dark: #008800;
+  --vp-c-brand-darker: #006600;
+  --vp-c-brand-dimm: rgba(0, 170, 0, 0.08);
+}
+
+.dark {
+  --vp-c-brand: #22dd22;
+  --vp-c-brand-light: #55ee55;
+  --vp-c-brand-lighter: #88ff88;
+  --vp-c-brand-dark: #00cc00;
+  --vp-c-brand-darker: #00aa00;
+}
+
+/**
+ * Component: Home
+ */
+.VPHome {
+  margin-bottom: 96px;
+}
+
+/**
+ * Component: Custom Block
+ */
+.custom-block {
+  border-radius: 8px;
+}
+
+/**
+ * Component: Button
+ */
+.VPButton {
+  border-radius: 20px;
+  padding: 0 24px;
+}
+
+/**
+ * Animations
+ */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.community-card {
+  animation: fade-in 0.3s ease-out;
+}
