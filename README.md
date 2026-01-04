@@ -51,10 +51,36 @@ export default defineConfig({
 })
 ```
 
+## Firebase 설정
+
+### Authentication 활성화
+
+Firebase Console > Authentication > Sign-in method에서:
+- 이메일/비밀번호 로그인 활성화
+
+### Firestore 보안 규칙
+
+Firebase Console > Firestore Database > Rules:
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /communities/{community} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if request.auth != null
+        && resource.data.createdBy == request.auth.uid;
+    }
+  }
+}
+```
+
 ## 기술 스택
 
 - VitePress
-- Firebase (Firestore, Analytics)
+- Firebase (Firestore, Authentication, Analytics)
 - Vue 3
 
 ## 구조
@@ -65,6 +91,11 @@ mcbelist/
 │   ├── .vitepress/
 │   │   ├── config.js          # VitePress 설정
 │   │   ├── firebase.js        # Firebase 설정
+│   │   ├── components/
+│   │   │   ├── AuthModal.vue  # 로그인/회원가입 모달
+│   │   │   └── UserMenu.vue   # 사용자 메뉴
+│   │   ├── composables/
+│   │   │   └── useAuth.js     # 인증 상태 관리
 │   │   └── theme/
 │   │       ├── index.js       # 테마 설정
 │   │       └── custom.css     # 커스텀 스타일
@@ -81,11 +112,21 @@ mcbelist/
 
 ```javascript
 {
-  name: string,           // 커뮤니티 이름
-  description: string,    // 설명
-  category: string,       // 카테고리 (서버, 디스코드, 카페, 커뮤니티, 기타)
-  link: string,           // 링크 (optional)
-  tags: string[],         // 태그 배열
-  createdAt: timestamp    // 생성 시간
+  name: string,              // 커뮤니티 이름
+  description: string,       // 설명
+  category: string,          // 카테고리 (서버, 디스코드, 카페, 커뮤니티, 기타)
+  link: string,              // 링크 (optional)
+  tags: string[],            // 태그 배열
+  createdAt: timestamp,      // 생성 시간
+  createdBy: string,         // 작성자 UID
+  createdByEmail: string     // 작성자 이메일
 }
 ```
+
+## 주요 기능
+
+- 커뮤니티 목록 조회
+- 이메일/비밀번호 회원가입 및 로그인
+- 로그인한 사용자만 커뮤니티 등록 가능
+- 카테고리별 분류
+- 태그 시스템

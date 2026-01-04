@@ -21,12 +21,6 @@ export default defineConfig({
           { text: '커뮤니티 등록', link: '/submit' },
           { text: '소개', link: '/about' }
         ]
-      },
-      {
-        text: '가이드',
-        items: [
-          { text: '로그인/회원가입', link: '/auth-guide' }
-        ]
       }
     ],
 

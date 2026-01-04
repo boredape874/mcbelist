@@ -42,12 +42,6 @@
           {{ isLogin ? '계정이 없으신가요? 회원가입' : '이미 계정이 있으신가요? 로그인' }}
         </button>
       </div>
-
-      <div class="divider">또는</div>
-
-      <button @click="signInWithGoogle" :disabled="loading" class="google-button">
-        Google로 {{ isLogin ? '로그인' : '회원가입' }}
-      </button>
     </div>
   </div>
 </template>
@@ -133,31 +127,6 @@ async function handleSubmit() {
       default:
         error.value = err.message
     }
-  } finally {
-    loading.value = false
-  }
-}
-
-async function signInWithGoogle() {
-  loading.value = true
-  error.value = ''
-
-  try {
-    const auth = await getAuth()
-    if (!auth) {
-      error.value = '인증 서비스를 사용할 수 없습니다.'
-      return
-    }
-
-    const { signInWithPopup, GoogleAuthProvider } = await import('firebase/auth')
-    const provider = new GoogleAuthProvider()
-    await signInWithPopup(auth, provider)
-
-    emit('success')
-    closeModal()
-  } catch (err) {
-    console.error('Google sign-in error:', err)
-    error.value = err.message
   } finally {
     loading.value = false
   }
@@ -286,54 +255,5 @@ input:focus {
 
 .toggle-button:hover {
   text-decoration: underline;
-}
-
-.divider {
-  text-align: center;
-  margin: 1.5rem 0;
-  color: var(--vp-c-text-2);
-  font-size: 0.875rem;
-  position: relative;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 40%;
-  height: 1px;
-  background: var(--vp-c-divider);
-}
-
-.divider::before {
-  left: 0;
-}
-
-.divider::after {
-  right: 0;
-}
-
-.google-button {
-  width: 100%;
-  padding: 0.75rem;
-  background: white;
-  color: #333;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.google-button:hover:not(:disabled) {
-  background: var(--vp-c-bg-soft);
-  border-color: var(--vp-c-brand);
-}
-
-.google-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
 }
 </style>
