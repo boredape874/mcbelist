@@ -1,14 +1,18 @@
 import { ref, onMounted } from 'vue'
 import { getAuth } from '../firebase.js'
-import { onAuthStateChanged, signOut } from 'firebase/auth'
 
 const user = ref(null)
 const loading = ref(true)
 
 export function useAuth() {
-  onMounted(() => {
-    const auth = getAuth()
+  onMounted(async () => {
+    const auth = await getAuth()
+    if (!auth) {
+      loading.value = false
+      return
+    }
 
+    const { onAuthStateChanged } = await import('firebase/auth')
     onAuthStateChanged(auth, (currentUser) => {
       user.value = currentUser
       loading.value = false
@@ -16,8 +20,11 @@ export function useAuth() {
   })
 
   async function logout() {
-    const auth = getAuth()
+    const auth = await getAuth()
+    if (!auth) return
+
     try {
+      const { signOut } = await import('firebase/auth')
       await signOut(auth)
       user.value = null
     } catch (error) {

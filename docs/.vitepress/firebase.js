@@ -1,8 +1,3 @@
-import { initializeApp } from 'firebase/app'
-import { getAnalytics } from 'firebase/analytics'
-import { getFirestore } from 'firebase/firestore'
-import { getAuth } from 'firebase/auth'
-
 const firebaseConfig = {
   apiKey: "AIzaSyDvtopV80qKWM-LamD4mQKFep3FR-NrPAM",
   authDomain: "mcbelist.firebaseapp.com",
@@ -18,28 +13,41 @@ let analytics
 let db
 let auth
 
-export function initFirebase() {
+export async function initFirebase() {
+  if (typeof window === 'undefined') {
+    return { app: null, analytics: null, db: null, auth: null }
+  }
+
   if (!app) {
+    const { initializeApp } = await import('firebase/app')
+    const { getAnalytics } = await import('firebase/analytics')
+    const { getFirestore } = await import('firebase/firestore')
+    const { getAuth } = await import('firebase/auth')
+
     app = initializeApp(firebaseConfig)
-    if (typeof window !== 'undefined') {
-      analytics = getAnalytics(app)
-    }
+    analytics = getAnalytics(app)
     db = getFirestore(app)
     auth = getAuth(app)
   }
   return { app, analytics, db, auth }
 }
 
-export function getDb() {
+export async function getDb() {
+  if (typeof window === 'undefined') {
+    return null
+  }
   if (!db) {
-    initFirebase()
+    await initFirebase()
   }
   return db
 }
 
-export function getAuth() {
+export async function getAuth() {
+  if (typeof window === 'undefined') {
+    return null
+  }
   if (!auth) {
-    initFirebase()
+    await initFirebase()
   }
   return auth
 }

@@ -13,7 +13,8 @@ const error = ref(null)
 
 onMounted(async () => {
   try {
-    const db = getDb()
+    const db = await getDb()
+    if (!db) return
     const q = query(collection(db, 'communities'), orderBy('createdAt', 'desc'))
     const querySnapshot = await getDocs(q)
 
@@ -32,19 +33,20 @@ onMounted(async () => {
 
 # 커뮤니티 목록
 
-<div v-if="loading" class="loading">
-  로딩 중...
-</div>
+<ClientOnly>
+  <div v-if="loading" class="loading">
+    로딩 중...
+  </div>
 
-<div v-else-if="error" class="error">
-  오류가 발생했습니다: {{ error }}
-</div>
+  <div v-else-if="error" class="error">
+    오류가 발생했습니다: {{ error }}
+  </div>
 
-<div v-else-if="communities.length === 0" class="empty">
-  아직 등록된 커뮤니티가 없습니다. 첫 번째 커뮤니티를 등록해보세요!
-</div>
+  <div v-else-if="communities.length === 0" class="empty">
+    아직 등록된 커뮤니티가 없습니다. 첫 번째 커뮤니티를 등록해보세요!
+  </div>
 
-<div v-else class="community-list">
+  <div v-else class="community-list">
   <div v-for="community in communities" :key="community.id" class="community-card">
     <h3>{{ community.name }}</h3>
     <p class="description">{{ community.description }}</p>
@@ -58,7 +60,8 @@ onMounted(async () => {
       방문하기 →
     </a>
   </div>
-</div>
+  </div>
+</ClientOnly>
 
 <style scoped>
 .loading, .error, .empty {

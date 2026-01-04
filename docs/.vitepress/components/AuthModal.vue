@@ -55,12 +55,6 @@
 <script setup>
 import { ref } from 'vue'
 import { getAuth } from '../firebase.js'
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider
-} from 'firebase/auth'
 
 const props = defineProps({
   show: Boolean,
@@ -95,7 +89,16 @@ async function handleSubmit() {
   error.value = ''
 
   try {
-    const auth = getAuth()
+    const auth = await getAuth()
+    if (!auth) {
+      error.value = '인증 서비스를 사용할 수 없습니다.'
+      return
+    }
+
+    const {
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword
+    } = await import('firebase/auth')
 
     if (isLogin.value) {
       await signInWithEmailAndPassword(auth, email.value, password.value)
@@ -140,7 +143,13 @@ async function signInWithGoogle() {
   error.value = ''
 
   try {
-    const auth = getAuth()
+    const auth = await getAuth()
+    if (!auth) {
+      error.value = '인증 서비스를 사용할 수 없습니다.'
+      return
+    }
+
+    const { signInWithPopup, GoogleAuthProvider } = await import('firebase/auth')
     const provider = new GoogleAuthProvider()
     await signInWithPopup(auth, provider)
 
