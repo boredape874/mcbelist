@@ -120,8 +120,8 @@ body {
 
 .VPNav {
   position: static !important;
-  background: var(--ui-surface);
-  border-bottom: 1px solid var(--ui-border);
+  background: transparent;
+  border-bottom: 0;
   z-index: 5;
 }
 
@@ -130,8 +130,9 @@ body {
   height: auto !important;
   min-height: 0 !important;
   padding: 0.9rem 0;
-  background: transparent;
+  background: var(--ui-surface);
   box-shadow: none;
+  border-bottom: 1px solid var(--ui-border);
   overflow: visible;
 }
 
@@ -169,6 +170,10 @@ body {
   font-size: 1.1rem;
   letter-spacing: 0.02em;
   white-space: nowrap;
+}
+
+.VPNavBar .title {
+  display: none;
 }
 
 .VPNavBarMenu {
@@ -209,6 +214,11 @@ body {
 }
 
 @media (min-width: 960px) {
+  .VPNavBar.has-sidebar {
+    margin-left: var(--vp-sidebar-width);
+    width: calc(100% - var(--vp-sidebar-width));
+  }
+
   .VPNavBar.has-sidebar .title {
     padding-left: 12px;
     padding-right: 0;
@@ -220,6 +230,11 @@ body {
 }
 
 @media (min-width: 1440px) {
+  .VPNavBar.has-sidebar {
+    margin-left: var(--vp-sidebar-width);
+    width: calc(100% - var(--vp-sidebar-width));
+  }
+
   .VPNavBar.has-sidebar .title {
     padding-left: 12px;
     width: var(--vp-sidebar-width);
@@ -260,6 +275,27 @@ body {
   left: 0;
   overflow-y: auto;
   padding-top: calc(var(--vp-nav-height) + 12px) !important;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 0.8rem;
+}
+
+.sidebar-brand__link {
+  font-family: var(--vp-font-family-title);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sidebar-brand__link:hover {
+  color: var(--vp-c-brand);
 }
 
 .VPSidebar .curtain {
@@ -365,6 +401,12 @@ body {
 
 .VPDoc .content-container,
 .VPDoc.has-aside .content-container {
+  max-width: none;
+  width: 100%;
+}
+
+.VPDoc .main,
+.vp-doc {
   max-width: none;
   width: 100%;
 }
@@ -495,6 +537,7 @@ body {
   margin: 2rem 0 2.5rem;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .page-hero::after {
@@ -554,6 +597,7 @@ body {
 
 .page-section {
   margin-top: 2.5rem;
+  width: 100%;
 }
 
 .home-flow {

@@ -265,6 +265,7 @@ async function toggleDislike(community) {
 .community-browser {
   display: grid;
   gap: 1.6rem;
+  width: 100%;
 }
 
 .state {

@@ -2,11 +2,13 @@ import DefaultTheme from 'vitepress/theme'
 import './custom.css'
 import { h } from 'vue'
 import UserMenu from '../components/UserMenu.vue'
+import SidebarBrand from '../components/SidebarBrand.vue'
 
 export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
+      'sidebar-nav-before': () => h(SidebarBrand),
       'nav-bar-content-after': () => h(UserMenu)
     })
   },
