@@ -225,6 +225,10 @@ const isUserAdmin = computed(() => {
               링크: <a :href="community.link" target="_blank">{{ community.link }}</a>
             </div>
 
+            <div class="member-count">
+              현인원: {{ community.memberCount || 0 }}명
+            </div>
+
             <div class="creator-info">
               등록자: {{ community.createdByEmail || community.createdBy }}
             </div>
@@ -269,8 +273,12 @@ const isUserAdmin = computed(() => {
               링크: <a :href="community.link" target="_blank">{{ community.link }}</a>
             </div>
 
+            <div class="member-count">
+              현인원: {{ community.memberCount || 0 }}명
+            </div>
+
             <div class="stats">
-              👍 {{ community.likes?.length || 0 }} | 👎 {{ community.dislikes?.length || 0 }}
+              좋아요 {{ community.likes?.length || 0 }} | 싫어요 {{ community.dislikes?.length || 0 }}
             </div>
 
             <div class="order-control">
@@ -437,6 +445,13 @@ const isUserAdmin = computed(() => {
 .link-info a {
   color: var(--vp-c-brand);
   word-break: break-all;
+}
+
+.member-count {
+  margin: 0.75rem 0;
+  font-size: 0.875rem;
+  color: var(--vp-c-text-2);
+  font-weight: 500;
 }
 
 .creator-info {

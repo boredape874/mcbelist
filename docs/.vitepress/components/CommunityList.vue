@@ -214,14 +214,14 @@ async function toggleDislike(community) {
                   @click="toggleLike(community)"
                   :title="user ? '좋아요' : '로그인이 필요합니다'"
                 >
-                  👍 {{ likeCount(community) }}
+                  좋아요 {{ likeCount(community) }}
                 </button>
                 <button
                   :class="['reaction-btn', 'dislike', { active: hasDisliked(community) }]"
                   @click="toggleDislike(community)"
                   :title="user ? '싫어요' : '로그인이 필요합니다'"
                 >
-                  👎 {{ dislikeCount(community) }}
+                  싫어요 {{ dislikeCount(community) }}
                 </button>
               </div>
 

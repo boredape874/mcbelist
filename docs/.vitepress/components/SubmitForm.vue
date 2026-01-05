@@ -14,7 +14,8 @@ const formData = ref({
   category: CATEGORIES[0],
   link: '',
   tags: [],
-  imageUrl: ''
+  imageUrl: '',
+  memberCount: 0
 })
 
 const imagePreview = ref(null)
@@ -108,6 +109,7 @@ async function submitCommunity() {
       link: formData.value.link || null,
       tags: formData.value.tags,
       imageUrl: imageUrl,
+      memberCount: parseInt(formData.value.memberCount) || 0,
       status: 'pending',
       createdAt: serverTimestamp(),
       createdBy: user.value.uid,
@@ -128,7 +130,8 @@ async function submitCommunity() {
       category: CATEGORIES[0],
       link: '',
       tags: [],
-      imageUrl: ''
+      imageUrl: '',
+      memberCount: 0
     }
     removeImage()
   } catch (error) {
@@ -191,6 +194,17 @@ async function submitCommunity() {
           v-model="formData.link"
           type="url"
           placeholder="https://example.com"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="memberCount">현인원</label>
+        <input
+          id="memberCount"
+          v-model.number="formData.memberCount"
+          type="number"
+          min="0"
+          placeholder="0"
         />
       </div>
 
