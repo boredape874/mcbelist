@@ -11,6 +11,10 @@ const loading = ref(true)
 const activeTab = ref('pending')
 
 onMounted(async () => {
+  console.log('현재 사용자:', user.value)
+  console.log('현재 UID:', user.value?.uid)
+  console.log('관리자 여부:', user.value ? isAdmin(user.value.uid) : false)
+
   if (!user.value || !isAdmin(user.value.uid)) {
     loading.value = false
     return
@@ -37,15 +41,20 @@ async function loadCommunities() {
         id: doc.id,
         ...doc.data()
       }))
+      console.log('Pending 커뮤니티 (인덱스 사용):', pendingCommunities.value.length)
     } catch (pendingErr) {
       console.error('Error loading pending communities:', pendingErr)
       // 인덱스가 없을 경우 대체 쿼리
       const allQuery = query(collection(db, 'communities'))
       const allSnapshot = await getDocs(allQuery)
-      pendingCommunities.value = allSnapshot.docs
-        .map(doc => ({ id: doc.id, ...doc.data() }))
+      const allCommunities = allSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      console.log('전체 커뮤니티 수:', allCommunities.length)
+      console.log('전체 커뮤니티:', allCommunities)
+      pendingCommunities.value = allCommunities
         .filter(c => c.status === 'pending')
         .sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0))
+      console.log('Pending 커뮤니티 (필터링 후):', pendingCommunities.value.length)
+      console.log('Pending 커뮤니티 목록:', pendingCommunities.value)
     }
 
     // approved 커뮤니티 로드
