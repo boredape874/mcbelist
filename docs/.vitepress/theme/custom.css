@@ -1,9 +1,9 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Gugi&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;600;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   --vp-font-family-base: 'IBM Plex Sans KR', sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', monospace;
-  --vp-font-family-title: 'Gugi', 'IBM Plex Sans KR', sans-serif;
+  --vp-font-family-title: 'Hahmlet', 'IBM Plex Sans KR', serif;
 
   --ui-sand: #f4efe5;
   --ui-sand-soft: #fbf6ee;
@@ -135,6 +135,49 @@ body {
   background: var(--ui-surface-strong);
 }
 
+@media (min-width: 960px) {
+  .VPNav {
+    position: static;
+  }
+
+  .VPNavBar {
+    position: static;
+    height: auto;
+    padding: 0.75rem 0;
+  }
+
+  .VPNavBar .wrapper,
+  .VPNavBar .container,
+  .VPNavBar .content,
+  .VPNavBar .content-body {
+    height: auto;
+    min-height: 0;
+  }
+
+  .VPNavBar .content,
+  .VPNavBar .content-body {
+    flex-wrap: wrap;
+    row-gap: 0.6rem;
+  }
+
+  .VPNavBarMenu {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+  }
+
+  .VPNavBarMenu .link {
+    white-space: nowrap;
+  }
+
+  .user-menu {
+    margin-left: auto;
+  }
+
+  .VPContent {
+    padding-top: 0 !important;
+  }
+}
+
 .VPNavBarTitle .title {
   font-family: var(--vp-font-family-title);
   letter-spacing: 0.06em;
@@ -154,6 +197,21 @@ body {
 
 .dark .VPSidebar {
   background: var(--ui-surface-strong);
+}
+
+.VPSidebar,
+.VPSidebar .nav,
+.VPSidebarGroup,
+.VPSidebarGroup .title,
+.VPSidebarItem,
+.VPSidebarItem .text,
+.VPSidebarItem .link {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.VPSidebarItem {
+  line-height: 1.4;
 }
 
 .VPHome {
@@ -181,12 +239,14 @@ body {
   font-family: var(--vp-font-family-title);
   font-size: clamp(2.6rem, 6vw, 4.4rem);
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .VPHomeHero .text {
   font-weight: 600;
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
   color: var(--vp-c-text-1);
+  white-space: nowrap;
 }
 
 .VPHomeHero .tagline {
@@ -317,8 +377,9 @@ body {
 }
 
 .page-hero__content h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   margin-bottom: 0.75rem;
+  white-space: nowrap;
 }
 
 .page-hero__content p {
@@ -468,3 +529,4 @@ body {
 .dark .VPFooter {
   background: var(--ui-surface);
 }
+
