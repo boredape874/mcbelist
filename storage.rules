@@ -1,0 +1,24 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // 관리자 확인 함수
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'KDwAH579lFVH69LoN0QnXIrPBXp2';
+    }
+
+    match /communities/{imageId} {
+      // 모든 사용자가 읽기 가능
+      allow read: if true;
+
+      // 로그인한 사용자만 업로드 가능
+      // 이미지 파일만 허용, 5MB 이하
+      allow create: if request.auth != null
+                    && request.resource.size < 5 * 1024 * 1024
+                    && request.resource.contentType.matches('image/.*');
+
+      // 관리자만 삭제 가능
+      allow delete: if isAdmin();
+    }
+  }
+}

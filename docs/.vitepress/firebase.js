@@ -12,10 +12,11 @@ let app
 let analytics
 let db
 let auth
+let storage
 
 export async function initFirebase() {
   if (typeof window === 'undefined') {
-    return { app: null, analytics: null, db: null, auth: null }
+    return { app: null, analytics: null, db: null, auth: null, storage: null }
   }
 
   if (!app) {
@@ -23,13 +24,15 @@ export async function initFirebase() {
     const { getAnalytics } = await import('firebase/analytics')
     const { getFirestore } = await import('firebase/firestore')
     const { getAuth } = await import('firebase/auth')
+    const { getStorage } = await import('firebase/storage')
 
     app = initializeApp(firebaseConfig)
     analytics = getAnalytics(app)
     db = getFirestore(app)
     auth = getAuth(app)
+    storage = getStorage(app)
   }
-  return { app, analytics, db, auth }
+  return { app, analytics, db, auth, storage }
 }
 
 export async function getDb() {
@@ -50,4 +53,14 @@ export async function getAuth() {
     await initFirebase()
   }
   return auth
+}
+
+export async function getStorage() {
+  if (typeof window === 'undefined') {
+    return null
+  }
+  if (!storage) {
+    await initFirebase()
+  }
+  return storage
 }

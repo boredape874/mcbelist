@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getDb, getAuth } from '../firebase.js'
+import { getDb, getAuth, getStorage } from '../firebase.js'
 import { useAuth } from '../composables/useAuth.js'
 import AuthModal from './AuthModal.vue'
+import { CATEGORIES, AVAILABLE_TAGS } from '../constants.js'
 
 const { user, loading: authLoading } = useAuth()
 const showAuthModal = ref(false)
@@ -10,19 +11,79 @@ const showAuthModal = ref(false)
 const formData = ref({
   name: '',
   description: '',
-  category: '서버',
+  category: CATEGORIES[0],
   link: '',
-  tags: ''
+  tags: [],
+  image: null
 })
 
-const categories = ['서버', '레&#xB984;', '디스코드', '커뮤니티', '기타']
+const imagePreview = ref(null)
 const message = ref('')
 const messageType = ref('')
 const submitting = ref(false)
+const imageFile = ref(null)
+
+function handleImageChange(event) {
+  const file = event.target.files[0]
+  if (file) {
+    if (file.size > 5 * 1024 * 1024) {
+      message.value = '이미지 크기는 5MB 이하여야 합니다.'
+      messageType.value = 'error'
+      return
+    }
+
+    if (!file.type.startsWith('image/')) {
+      message.value = '이미지 파일만 업로드 가능합니다.'
+      messageType.value = 'error'
+      return
+    }
+
+    imageFile.value = file
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      imagePreview.value = e.target.result
+    }
+    reader.readAsDataURL(file)
+  }
+}
+
+function removeImage() {
+  imageFile.value = null
+  imagePreview.value = null
+  formData.value.image = null
+}
+
+function toggleTag(tag) {
+  const index = formData.value.tags.indexOf(tag)
+  if (index > -1) {
+    formData.value.tags.splice(index, 1)
+  } else {
+    formData.value.tags.push(tag)
+  }
+}
+
+async function uploadImage(file) {
+  const storage = await getStorage()
+  const { ref: storageRef, uploadBytes, getDownloadURL } = await import('firebase/storage')
+
+  const timestamp = Date.now()
+  const fileName = `communities/${timestamp}_${file.name}`
+  const fileRef = storageRef(storage, fileName)
+
+  await uploadBytes(fileRef, file)
+  const url = await getDownloadURL(fileRef)
+  return url
+}
 
 async function submitCommunity() {
   if (!formData.value.name || !formData.value.description) {
     message.value = '필수 항목을 모두 입력해주세요.'
+    messageType.value = 'error'
+    return
+  }
+
+  if (formData.value.tags.length === 0) {
+    message.value = '최소 1개의 태그를 선택해주세요.'
     messageType.value = 'error'
     return
   }
@@ -34,28 +95,41 @@ async function submitCommunity() {
     const db = await getDb()
     const { collection, addDoc, serverTimestamp } = await import('firebase/firestore')
 
+    let imageUrl = null
+    if (imageFile.value) {
+      imageUrl = await uploadImage(imageFile.value)
+    }
+
     const communityData = {
       name: formData.value.name,
       description: formData.value.description,
       category: formData.value.category,
       link: formData.value.link || null,
-      tags: formData.value.tags ? formData.value.tags.split(',').map(t => t.trim()) : [],
+      tags: formData.value.tags,
+      imageUrl: imageUrl,
+      status: 'pending',
       createdAt: serverTimestamp(),
-      createdBy: user.value.uid
+      createdBy: user.value.uid,
+      createdByEmail: user.value.email,
+      likes: [],
+      dislikes: [],
+      order: 0
     }
 
     await addDoc(collection(db, 'communities'), communityData)
 
-    message.value = '커뮤니티가 성공적으로 등록되었습니다!'
+    message.value = '커뮤니티 등록 신청이 완료되었습니다. 관리자 승인 후 목록에 표시됩니다.'
     messageType.value = 'success'
 
     formData.value = {
       name: '',
       description: '',
-      category: '서버',
+      category: CATEGORIES[0],
       link: '',
-      tags: ''
+      tags: [],
+      image: null
     }
+    removeImage()
   } catch (error) {
     console.error('Error adding community:', error)
     message.value = '등록 중 오류가 발생했습니다. 다시 시도해주세요.'
@@ -96,8 +170,8 @@ async function submitCommunity() {
         <textarea
           id="description"
           v-model="formData.description"
-          placeholder="커뮤니티에 대한 설명을 입력하세요"
-          rows="4"
+          placeholder="커뮤니티에 대한 설명을 입력하세요 (링크 포함 가능)"
+          rows="6"
           required
         ></textarea>
       </div>
@@ -105,7 +179,7 @@ async function submitCommunity() {
       <div class="form-group">
         <label for="category">카테고리 *</label>
         <select id="category" v-model="formData.category">
-          <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
+          <option v-for="cat in CATEGORIES" :key="cat" :value="cat">{{ cat }}</option>
         </select>
       </div>
 
@@ -120,13 +194,33 @@ async function submitCommunity() {
       </div>
 
       <div class="form-group">
-        <label for="tags">태그 (쉼표로 구분)</label>
+        <label>태그 선택 * (최소 1개)</label>
+        <div class="tag-selector">
+          <button
+            v-for="tag in AVAILABLE_TAGS"
+            :key="tag"
+            type="button"
+            :class="['tag-button', { selected: formData.tags.includes(tag) }]"
+            @click="toggleTag(tag)"
+          >
+            {{ tag }}
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image">홍보 이미지 (선택, 최대 5MB)</label>
         <input
-          id="tags"
-          v-model="formData.tags"
-          type="text"
-          placeholder="예: PvP, 생존, 미니게임"
+          id="image"
+          type="file"
+          accept="image/*"
+          @change="handleImageChange"
+          class="file-input"
         />
+        <div v-if="imagePreview" class="image-preview">
+          <img :src="imagePreview" alt="미리보기" />
+          <button type="button" @click="removeImage" class="remove-image">✕</button>
+        </div>
       </div>
 
       <div v-if="message" :class="['message', messageType]">
@@ -138,8 +232,12 @@ async function submitCommunity() {
         :disabled="submitting"
         class="submit-button"
       >
-        {{ submitting ? '등록 중...' : '커뮤니티 등록하기' }}
+        {{ submitting ? '등록 중...' : '커뮤니티 등록 신청' }}
       </button>
+
+      <p class="notice">
+        등록 신청 후 관리자 승인이 필요합니다.
+      </p>
     </div>
 
     <AuthModal
@@ -224,7 +322,73 @@ async function submitCommunity() {
 
 .form-group textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px;
+}
+
+.tag-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.875rem;
+}
+
+.tag-button:hover {
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-brand);
+}
+
+.tag-button.selected {
+  background: var(--vp-c-brand);
+  color: white;
+  border-color: var(--vp-c-brand);
+}
+
+.file-input {
+  padding: 0.5rem 0 !important;
+}
+
+.image-preview {
+  position: relative;
+  margin-top: 1rem;
+  max-width: 300px;
+}
+
+.image-preview img {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.remove-image {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.remove-image:hover {
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .message {
@@ -265,5 +429,12 @@ async function submitCommunity() {
 .submit-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.notice {
+  text-align: center;
+  color: var(--vp-c-text-2);
+  font-size: 0.875rem;
+  margin-top: 1rem;
 }
 </style>

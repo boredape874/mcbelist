@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 관리자 확인 함수
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'KDwAH579lFVH69LoN0QnXIrPBXp2';
+    }
+
+    match /communities/{communityId} {
+      // 승인된 커뮤니티만 모든 사용자가 읽기 가능
+      // 관리자는 모든 커뮤니티 읽기 가능
+      allow read: if resource.data.status == 'approved' || isAdmin();
+
+      // 로그인한 사용자만 생성 가능 (pending 상태로)
+      allow create: if request.auth != null
+                    && request.resource.data.createdBy == request.auth.uid
+                    && request.resource.data.status == 'pending';
+
+      // 관리자는 모든 수정/삭제 가능
+      // 일반 사용자는 likes/dislikes 배열만 수정 가능
+      allow update: if isAdmin()
+                    || (request.auth != null
+                        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes', 'dislikes']));
+
+      // 관리자만 삭제 가능
+      allow delete: if isAdmin();
+    }
+  }
+}
