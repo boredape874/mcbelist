@@ -14,16 +14,7 @@ export default defineConfig({
       { text: '소개', link: '/about' }
     ],
 
-    sidebar: [
-      {
-        text: '메뉴',
-        items: [
-          { text: '커뮤니티 목록', link: '/list' },
-          { text: '커뮤니티 등록', link: '/submit' },
-          { text: '소개', link: '/about' }
-        ]
-      }
-    ],
+    sidebar: false,
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/yourusername/mcbelist' }
