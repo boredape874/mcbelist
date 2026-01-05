@@ -25,31 +25,59 @@ async function loadCommunities() {
     const db = await getDb()
     const { collection, query, where, orderBy, getDocs } = await import('firebase/firestore')
 
-    const pendingQuery = query(
-      collection(db, 'communities'),
-      where('status', '==', 'pending'),
-      orderBy('createdAt', 'desc')
-    )
-    const pendingSnapshot = await getDocs(pendingQuery)
-    pendingCommunities.value = pendingSnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }))
+    // pending 커뮤니티 로드
+    try {
+      const pendingQuery = query(
+        collection(db, 'communities'),
+        where('status', '==', 'pending'),
+        orderBy('createdAt', 'desc')
+      )
+      const pendingSnapshot = await getDocs(pendingQuery)
+      pendingCommunities.value = pendingSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+    } catch (pendingErr) {
+      console.error('Error loading pending communities:', pendingErr)
+      // 인덱스가 없을 경우 대체 쿼리
+      const allQuery = query(collection(db, 'communities'))
+      const allSnapshot = await getDocs(allQuery)
+      pendingCommunities.value = allSnapshot.docs
+        .map(doc => ({ id: doc.id, ...doc.data() }))
+        .filter(c => c.status === 'pending')
+        .sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0))
+    }
 
-    const approvedQuery = query(
-      collection(db, 'communities'),
-      where('status', '==', 'approved'),
-      orderBy('order', 'desc'),
-      orderBy('createdAt', 'desc')
-    )
-    const approvedSnapshot = await getDocs(approvedQuery)
-    approvedCommunities.value = approvedSnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }))
+    // approved 커뮤니티 로드
+    try {
+      const approvedQuery = query(
+        collection(db, 'communities'),
+        where('status', '==', 'approved'),
+        orderBy('order', 'desc'),
+        orderBy('createdAt', 'desc')
+      )
+      const approvedSnapshot = await getDocs(approvedQuery)
+      approvedCommunities.value = approvedSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+    } catch (approvedErr) {
+      console.error('Error loading approved communities:', approvedErr)
+      // 인덱스가 없을 경우 대체 쿼리
+      const allQuery = query(collection(db, 'communities'))
+      const allSnapshot = await getDocs(allQuery)
+      approvedCommunities.value = allSnapshot.docs
+        .map(doc => ({ id: doc.id, ...doc.data() }))
+        .filter(c => c.status === 'approved')
+        .sort((a, b) => {
+          const orderDiff = (b.order || 0) - (a.order || 0)
+          if (orderDiff !== 0) return orderDiff
+          return (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0)
+        })
+    }
   } catch (err) {
     console.error('Error loading communities:', err)
-    alert('커뮤니티 목록을 불러오는데 실패했습니다.')
+    alert('커뮤니티 목록을 불러오는데 실패했습니다: ' + err.message)
   } finally {
     loading.value = false
   }
