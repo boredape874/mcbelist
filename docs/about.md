@@ -1,21 +1,49 @@
-# 소개
+﻿---
+title: 소개
+---
 
-## MCBeList란?
+<section class="page-hero">
+  <div class="page-hero__content">
+    <p class="eyebrow">About</p>
+    <h1>MCBeList 소개</h1>
+    <p>베드락 에디션 커뮤니티 정보를 한 곳에 모아 쉽고 빠르게 연결합니다.</p>
+  </div>
+  <div class="page-hero__panel">
+    <div class="page-hero__card">
+      <h3>목표</h3>
+      <p>신뢰할 수 있는 커뮤니티 탐색과 성장을 돕는 큐레이션 허브.</p>
+    </div>
+    <div class="page-hero__card">
+      <h3>운영 방식</h3>
+      <p>등록 신청과 승인 절차를 통해 정보 품질을 유지합니다.</p>
+    </div>
+  </div>
+</section>
 
-MCBeList는 마인크래프트 베드락 에디션 커뮤니티를 한 곳에 모아놓은 플랫폼입니다.
+<section class="page-section">
+  <div class="info-grid">
+    <div class="page-hero__card">
+      <h3>정돈된 목록</h3>
+      <p>카테고리와 태그 기준으로 원하는 커뮤니티를 빠르게 찾습니다.</p>
+    </div>
+    <div class="page-hero__card">
+      <h3>공정한 노출</h3>
+      <p>반응 지표와 관리자 검수를 통해 투명한 리스트를 유지합니다.</p>
+    </div>
+    <div class="page-hero__card">
+      <h3>커뮤니티 성장</h3>
+      <p>내 커뮤니티를 등록해 더 많은 유저에게 알릴 수 있습니다.</p>
+    </div>
+  </div>
+</section>
 
-## 기능
-
-- 베드락 에디션 커뮤니티 목록 조회
-- 커뮤니티 등록 및 공유
-- 카테고리별 분류 (서버, 디스코드, 카페 등)
-- 태그 기반 검색
-
-## 이용 방법
-
-1. **커뮤니티 찾기**: [커뮤니티 목록](/list)에서 원하는 커뮤니티를 찾아보세요
-2. **커뮤니티 등록**: [커뮤니티 등록](/submit)에서 자신의 커뮤니티를 등록하세요
-
-## 문의
-
-질문이나 제안사항이 있으시면 GitHub Issues를 통해 알려주세요.
+<section class="page-section">
+  <div class="page-hero__card">
+    <h3>이용 방법</h3>
+    <ul class="info-list">
+      <li>커뮤니티 목록에서 카테고리/태그로 탐색하세요.</li>
+      <li>등록 페이지에서 커뮤니티 정보를 제출하세요.</li>
+      <li>승인 후 목록에서 누구나 확인할 수 있습니다.</li>
+    </ul>
+  </div>
+</section>

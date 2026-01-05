@@ -1,9 +1,15 @@
-<template>
+﻿<template>
   <div v-if="show" class="modal-overlay" @click="closeModal">
     <div class="modal-content" @click.stop>
       <button class="close-button" @click="closeModal">×</button>
 
-      <h2>{{ isLogin ? '로그인' : '회원가입' }}</h2>
+      <div class="modal-header">
+        <p class="eyebrow">MCBeList</p>
+        <h2>{{ isLogin ? '로그인' : '회원가입' }}</h2>
+        <p class="modal-subtitle">
+          {{ isLogin ? '등록과 반응을 위해 로그인하세요.' : '간단한 정보로 새 계정을 만들어보세요.' }}
+        </p>
+      </div>
 
       <form @submit.prevent="handleSubmit">
         <div class="form-group">
@@ -43,7 +49,7 @@
         </button>
       </div>
 
-      <div class="divider">또는</div>
+      <div class="divider"><span>또는</span></div>
 
       <button @click="signInWithGoogle" :disabled="loading" class="google-button">
         <span class="google-icon">G</span>
@@ -168,48 +174,65 @@ async function signInWithGoogle() {
 <style scoped>
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  background: rgba(14, 10, 8, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(6px);
 }
 
 .modal-content {
-  background: var(--vp-c-bg);
+  background: var(--ui-surface-strong);
   padding: 2rem;
-  border-radius: 12px;
-  max-width: 400px;
-  width: 90%;
+  border-radius: var(--ui-radius-lg);
+  max-width: 420px;
+  width: 92vw;
   position: relative;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--ui-shadow-lg);
+  border: 1px solid var(--ui-border);
+  animation: rise-in 0.4s ease;
+}
+
+.dark .modal-content {
+  background: var(--ui-surface-strong);
+}
+
+.modal-header {
+  margin-bottom: 1.5rem;
+}
+
+.modal-subtitle {
+  margin-top: 0.4rem;
+  color: var(--vp-c-text-2);
 }
 
 .close-button {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: none;
+  background: rgba(0, 0, 0, 0.08);
   border: none;
-  font-size: 2rem;
+  font-size: 1.6rem;
   cursor: pointer;
   color: var(--vp-c-text-2);
   line-height: 1;
-  padding: 0;
-  width: 2rem;
-  height: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s, color 0.2s;
 }
 
 .close-button:hover {
+  background: rgba(0, 0, 0, 0.15);
   color: var(--vp-c-text-1);
 }
 
 h2 {
-  margin: 0 0 1.5rem 0;
+  margin: 0.2rem 0 0.3rem 0;
   color: var(--vp-c-text-1);
 }
 
@@ -220,50 +243,55 @@ h2 {
 label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--vp-c-text-1);
 }
 
 input {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
   font-size: 1rem;
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
   outline: none;
   border-color: var(--vp-c-brand);
+  box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
 }
 
 .error-message {
   padding: 0.75rem;
-  background: var(--vp-c-danger-soft);
+  background: rgba(196, 73, 47, 0.16);
   color: var(--vp-c-danger);
-  border-radius: 6px;
+  border-radius: 10px;
   margin-bottom: 1rem;
   font-size: 0.875rem;
+  border: 1px solid rgba(196, 73, 47, 0.3);
 }
 
 .submit-button {
   width: 100%;
-  padding: 0.75rem;
-  background: var(--vp-c-brand);
+  padding: 0.8rem;
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-ember));
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 999px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .submit-button:hover:not(:disabled) {
-  background: var(--vp-c-brand-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--ui-shadow-md);
 }
 
 .submit-button:disabled {
@@ -281,8 +309,9 @@ input:focus {
   border: none;
   color: var(--vp-c-brand);
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   padding: 0.5rem;
+  font-weight: 600;
 }
 
 .toggle-button:hover {
@@ -290,56 +319,47 @@ input:focus {
 }
 
 .divider {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin: 1.5rem 0;
-  color: var(--vp-c-text-2);
-  font-size: 0.875rem;
-  position: relative;
+  color: var(--vp-c-text-3);
+  font-size: 0.85rem;
 }
 
 .divider::before,
 .divider::after {
   content: '';
-  position: absolute;
-  top: 50%;
-  width: 40%;
+  flex: 1;
   height: 1px;
-  background: var(--vp-c-divider);
-}
-
-.divider::before {
-  left: 0;
-}
-
-.divider::after {
-  right: 0;
+  background: var(--ui-border);
 }
 
 .google-button {
   width: 100%;
-  padding: 0.75rem;
-  background: white;
+  padding: 0.8rem;
+  background: var(--ui-surface-strong);
   color: #333;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .google-icon {
-  font-weight: bold;
+  font-weight: 800;
   color: #4285f4;
 }
 
 .google-button:hover:not(:disabled) {
-  background: var(--vp-c-bg-soft);
   border-color: var(--vp-c-brand);
+  color: var(--vp-c-brand);
 }
 
 .google-button:disabled {

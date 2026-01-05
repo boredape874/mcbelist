@@ -172,15 +172,26 @@ const isUserAdmin = computed(() => {
 
 <template>
   <div>
-    <div v-if="!user" class="not-logged-in">
+    <div v-if="!user" class="state">
       <p>관리자 페이지는 로그인이 필요합니다.</p>
     </div>
 
-    <div v-else-if="!isUserAdmin" class="not-admin">
+    <div v-else-if="!isUserAdmin" class="state">
       <p>관리자 권한이 없습니다.</p>
     </div>
 
     <div v-else class="admin-panel">
+      <div class="admin-summary">
+        <div class="summary-card">
+          <p class="summary-label">승인 대기</p>
+          <p class="summary-value">{{ pendingCommunities.length }}</p>
+        </div>
+        <div class="summary-card">
+          <p class="summary-label">승인 완료</p>
+          <p class="summary-value">{{ approvedCommunities.length }}</p>
+        </div>
+      </div>
+
       <div class="tabs">
         <button
           :class="['tab', { active: activeTab === 'pending' }]"
@@ -205,17 +216,24 @@ const isUserAdmin = computed(() => {
           승인 대기중인 커뮤니티가 없습니다.
         </div>
 
-        <div v-for="community in pendingCommunities" :key="community.id" class="admin-card">
+        <div
+          v-for="(community, index) in pendingCommunities"
+          :key="community.id"
+          class="admin-card"
+          :style="{ '--stagger': index }"
+        >
           <div v-if="community.imageUrl" class="card-image">
             <img :src="community.imageUrl" :alt="community.name" />
           </div>
 
           <div class="card-content">
-            <h3>{{ community.name }}</h3>
+            <div class="card-header">
+              <h3>{{ community.name }}</h3>
+              <span class="category">{{ community.category }}</span>
+            </div>
             <p class="description">{{ community.description }}</p>
 
             <div class="meta">
-              <span class="category">{{ community.category }}</span>
               <span v-if="community.tags && community.tags.length > 0" class="tags">
                 <span v-for="tag in community.tags" :key="tag" class="tag">{{ tag }}</span>
               </span>
@@ -226,7 +244,7 @@ const isUserAdmin = computed(() => {
             </div>
 
             <div class="member-count">
-              현인원: {{ community.memberCount || 0 }}명
+              현재 인원: {{ community.memberCount || 0 }}명
             </div>
 
             <div class="creator-info">
@@ -253,17 +271,24 @@ const isUserAdmin = computed(() => {
           승인된 커뮤니티가 없습니다.
         </div>
 
-        <div v-for="community in approvedCommunities" :key="community.id" class="admin-card">
+        <div
+          v-for="(community, index) in approvedCommunities"
+          :key="community.id"
+          class="admin-card"
+          :style="{ '--stagger': index }"
+        >
           <div v-if="community.imageUrl" class="card-image">
             <img :src="community.imageUrl" :alt="community.name" />
           </div>
 
           <div class="card-content">
-            <h3>{{ community.name }}</h3>
+            <div class="card-header">
+              <h3>{{ community.name }}</h3>
+              <span class="category">{{ community.category }}</span>
+            </div>
             <p class="description">{{ community.description }}</p>
 
             <div class="meta">
-              <span class="category">{{ community.category }}</span>
               <span v-if="community.tags && community.tags.length > 0" class="tags">
                 <span v-for="tag in community.tags" :key="tag" class="tag">{{ tag }}</span>
               </span>
@@ -274,7 +299,7 @@ const isUserAdmin = computed(() => {
             </div>
 
             <div class="member-count">
-              현인원: {{ community.memberCount || 0 }}명
+              현재 인원: {{ community.memberCount || 0 }}명
             </div>
 
             <div class="stats">
@@ -306,34 +331,71 @@ const isUserAdmin = computed(() => {
 </template>
 
 <style scoped>
-.not-logged-in, .not-admin {
+.state {
   text-align: center;
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
   color: var(--vp-c-text-2);
+  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-strong);
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .admin-panel {
   max-width: 1200px;
   margin: 0 auto;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.admin-summary {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.summary-card {
+  padding: 1rem 1.3rem;
+  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-strong);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.summary-label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--vp-c-text-3);
+}
+
+.summary-value {
+  margin: 0.35rem 0 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
 }
 
 .tabs {
-  display: flex;
+  display: inline-flex;
   gap: 0.5rem;
-  margin-bottom: 2rem;
-  border-bottom: 2px solid var(--vp-c-divider);
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-soft);
 }
 
 .tab {
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1.2rem;
   border: none;
   background: transparent;
   color: var(--vp-c-text-2);
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 999px;
   transition: all 0.3s;
 }
 
@@ -342,8 +404,9 @@ const isUserAdmin = computed(() => {
 }
 
 .tab.active {
-  color: var(--vp-c-brand);
-  border-bottom-color: var(--vp-c-brand);
+  background: var(--vp-c-brand);
+  color: white;
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .loading {
@@ -356,8 +419,8 @@ const isUserAdmin = computed(() => {
   text-align: center;
   padding: 3rem 2rem;
   color: var(--vp-c-text-2);
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
+  border-radius: var(--ui-radius-lg);
+  border: 1px dashed var(--ui-border);
 }
 
 .community-section {
@@ -366,10 +429,19 @@ const isUserAdmin = computed(() => {
 }
 
 .admin-card {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
   overflow: hidden;
-  background: var(--vp-c-bg-soft);
+  background: var(--ui-surface-strong);
+  box-shadow: var(--ui-shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: rise-in 0.6s ease both;
+  animation-delay: calc(var(--stagger, 0) * 80ms);
+}
+
+.admin-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ui-shadow-md);
 }
 
 .card-image {
@@ -387,17 +459,26 @@ const isUserAdmin = computed(() => {
 
 .card-content {
   padding: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .admin-card h3 {
-  margin: 0 0 0.75rem 0;
-  color: var(--vp-c-brand);
-  font-size: 1.25rem;
+  margin: 0;
+  color: var(--vp-c-text-1);
+  font-size: 1.2rem;
 }
 
 .description {
   color: var(--vp-c-text-2);
-  margin: 0 0 1rem 0;
+  margin: 0;
   line-height: 1.6;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -407,38 +488,36 @@ const isUserAdmin = computed(() => {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
 }
 
 .category {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand);
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  display: inline-flex;
+  padding: 0.3rem 0.75rem;
+  background: rgba(63, 143, 92, 0.16);
+  color: var(--vp-c-brand-dark);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .tags {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
+  display: inline-flex;
+  padding: 0.25rem 0.6rem;
   background: var(--vp-c-bg);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  font-size: 0.75rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
+  font-size: 0.72rem;
   color: var(--vp-c-text-2);
 }
 
 .link-info {
-  margin: 0.75rem 0;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--vp-c-text-2);
 }
 
@@ -447,46 +526,34 @@ const isUserAdmin = computed(() => {
   word-break: break-all;
 }
 
-.member-count {
-  margin: 0.75rem 0;
-  font-size: 0.875rem;
-  color: var(--vp-c-text-2);
-  font-weight: 500;
-}
-
-.creator-info {
-  margin: 0.75rem 0;
-  font-size: 0.875rem;
-  color: var(--vp-c-text-2);
-}
-
+.member-count,
+.creator-info,
 .stats {
-  margin: 0.75rem 0;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--vp-c-text-2);
 }
 
 .order-control {
-  margin: 1rem 0;
-  padding: 1rem;
+  padding: 0.75rem;
   background: var(--vp-c-bg);
-  border-radius: 6px;
+  border-radius: 12px;
+  border: 1px solid var(--ui-border);
 }
 
 .order-control label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--vp-c-text-2);
 }
 
 .order-input {
-  width: 80px;
-  padding: 0.5rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  background: var(--vp-c-bg-soft);
+  width: 90px;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 10px;
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-size: 0.875rem;
 }
@@ -494,18 +561,19 @@ const isUserAdmin = computed(() => {
 .admin-actions {
   display: flex;
   gap: 0.5rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--vp-c-divider);
+  margin-top: 0.5rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--ui-border);
+  flex-wrap: wrap;
 }
 
 .btn {
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 1rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 999px;
   cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 600;
   transition: all 0.3s;
 }
 

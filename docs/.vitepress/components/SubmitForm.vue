@@ -1,6 +1,6 @@
-<script setup>
-import { ref, onMounted } from 'vue'
-import { getDb, getAuth, getStorage } from '../firebase.js'
+﻿<script setup>
+import { ref } from 'vue'
+import { getDb, getStorage } from '../firebase.js'
 import { useAuth } from '../composables/useAuth.js'
 import AuthModal from './AuthModal.vue'
 import { CATEGORIES, AVAILABLE_TAGS } from '../constants.js'
@@ -146,113 +146,139 @@ async function submitCommunity() {
 
 <template>
   <div>
-    <div v-if="authLoading" class="loading">
+    <div v-if="authLoading" class="state">
       로딩 중...
     </div>
 
     <div v-else-if="!user" class="auth-required">
-      <p>커뮤니티를 등록하려면 로그인이 필요합니다.</p>
-      <button @click="showAuthModal = true" class="login-button">
-        로그인 / 회원가입
-      </button>
+      <div class="auth-card">
+        <h3>로그인이 필요합니다</h3>
+        <p>커뮤니티 등록은 인증된 사용자만 가능합니다.</p>
+        <button @click="showAuthModal = true" class="login-button">
+          로그인 / 회원가입
+        </button>
+      </div>
     </div>
 
     <div v-else class="submit-form">
-      <div class="form-group">
-        <label for="name">커뮤니티 이름 *</label>
-        <input
-          id="name"
-          v-model="formData.name"
-          type="text"
-          placeholder="예: 마크 베드락 서버"
-          required
-        />
-      </div>
+      <div class="submit-layout">
+        <div class="form-panel">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">커뮤니티 이름 *</label>
+              <input
+                id="name"
+                v-model="formData.name"
+                type="text"
+                placeholder="예: 마크 베드락 서버"
+                required
+              />
+            </div>
 
-      <div class="form-group">
-        <label for="description">설명 *</label>
-        <textarea
-          id="description"
-          v-model="formData.description"
-          placeholder="커뮤니티에 대한 설명을 입력하세요 (링크 포함 가능)"
-          rows="6"
-          required
-        ></textarea>
-      </div>
+            <div class="form-group">
+              <label for="category">카테고리 *</label>
+              <select id="category" v-model="formData.category">
+                <option v-for="cat in CATEGORIES" :key="cat" :value="cat">{{ cat }}</option>
+              </select>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label for="category">카테고리 *</label>
-        <select id="category" v-model="formData.category">
-          <option v-for="cat in CATEGORIES" :key="cat" :value="cat">{{ cat }}</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label for="description">설명 *</label>
+            <textarea
+              id="description"
+              v-model="formData.description"
+              placeholder="커뮤니티에 대한 설명을 입력하세요 (링크 포함 가능)"
+              rows="6"
+              required
+            ></textarea>
+          </div>
 
-      <div class="form-group">
-        <label for="link">링크</label>
-        <input
-          id="link"
-          v-model="formData.link"
-          type="url"
-          placeholder="https://example.com"
-        />
-      </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="link">링크</label>
+              <input
+                id="link"
+                v-model="formData.link"
+                type="url"
+                placeholder="https://example.com"
+              />
+            </div>
 
-      <div class="form-group">
-        <label for="memberCount">현인원</label>
-        <input
-          id="memberCount"
-          v-model.number="formData.memberCount"
-          type="number"
-          min="0"
-          placeholder="0"
-        />
-      </div>
+            <div class="form-group">
+              <label for="memberCount">현재 인원</label>
+              <input
+                id="memberCount"
+                v-model.number="formData.memberCount"
+                type="number"
+                min="0"
+                placeholder="0"
+              />
+            </div>
+          </div>
 
-      <div class="form-group">
-        <label>태그 선택 * (최소 1개)</label>
-        <div class="tag-selector">
+          <div class="form-group">
+            <label>태그 선택 * (최소 1개)</label>
+            <div class="tag-selector">
+              <button
+                v-for="tag in AVAILABLE_TAGS"
+                :key="tag"
+                type="button"
+                :class="['tag-button', { selected: formData.tags.includes(tag) }]"
+                @click="toggleTag(tag)"
+              >
+                {{ tag }}
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="image">홍보 이미지 (선택, 최대 5MB)</label>
+            <input
+              id="image"
+              type="file"
+              accept="image/*"
+              @change="handleImageChange"
+              class="file-input"
+            />
+            <div v-if="imagePreview" class="image-preview">
+              <img :src="imagePreview" alt="미리보기" />
+              <button type="button" @click="removeImage" class="remove-image">X</button>
+            </div>
+          </div>
+
+          <div v-if="message" :class="['message', messageType]">
+            {{ message }}
+          </div>
+
           <button
-            v-for="tag in AVAILABLE_TAGS"
-            :key="tag"
-            type="button"
-            :class="['tag-button', { selected: formData.tags.includes(tag) }]"
-            @click="toggleTag(tag)"
+            @click="submitCommunity"
+            :disabled="submitting"
+            class="submit-button"
           >
-            {{ tag }}
+            {{ submitting ? '등록 중...' : '커뮤니티 등록 신청' }}
           </button>
+
+          <p class="notice">
+            등록 신청 후 관리자 승인이 필요합니다.
+          </p>
         </div>
+
+        <aside class="side-panel">
+          <div class="side-card">
+            <h3>등록 팁</h3>
+            <ul class="guide-list">
+              <li>설명에는 활동 주제와 분위기를 알려주세요.</li>
+              <li>태그는 2~4개 정도가 가장 효과적입니다.</li>
+              <li>홍보 이미지는 커뮤니티 대표 분위기를 담아주세요.</li>
+            </ul>
+          </div>
+          <div class="side-card">
+            <h3>승인 기준</h3>
+            <p>정보가 불명확하거나 중복된 커뮤니티는 승인 보류될 수 있습니다.</p>
+          </div>
+        </aside>
       </div>
-
-      <div class="form-group">
-        <label for="image">홍보 이미지 (선택, 최대 5MB)</label>
-        <input
-          id="image"
-          type="file"
-          accept="image/*"
-          @change="handleImageChange"
-          class="file-input"
-        />
-        <div v-if="imagePreview" class="image-preview">
-          <img :src="imagePreview" alt="미리보기" />
-          <button type="button" @click="removeImage" class="remove-image">✕</button>
-        </div>
-      </div>
-
-      <div v-if="message" :class="['message', messageType]">
-        {{ message }}
-      </div>
-
-      <button
-        @click="submitCommunity"
-        :disabled="submitting"
-        class="submit-button"
-      >
-        {{ submitting ? '등록 중...' : '커뮤니티 등록 신청' }}
-      </button>
-
-      <p class="notice">
-        등록 신청 후 관리자 승인이 필요합니다.
-      </p>
     </div>
 
     <AuthModal
@@ -264,43 +290,78 @@ async function submitCommunity() {
 </template>
 
 <style scoped>
-.loading {
+.state {
   text-align: center;
-  padding: 2rem;
+  padding: 2.5rem;
   color: var(--vp-c-text-2);
+  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-strong);
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .auth-required {
-  text-align: center;
-  padding: 2rem;
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
+  display: flex;
+  justify-content: center;
   margin: 2rem 0;
 }
 
-.auth-required p {
-  margin-bottom: 1rem;
+.auth-card {
+  text-align: center;
+  padding: 2rem;
+  background: var(--ui-surface-strong);
+  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  box-shadow: var(--ui-shadow-sm);
+  max-width: 420px;
+}
+
+.auth-card p {
+  margin-bottom: 1.5rem;
   color: var(--vp-c-text-2);
 }
 
 .login-button {
-  background: var(--vp-c-brand);
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-ember));
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  border-radius: 999px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background 0.3s;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .login-button:hover {
-  background: var(--vp-c-brand-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--ui-shadow-md);
 }
 
 .submit-form {
-  max-width: 600px;
+  max-width: 1100px;
   margin: 0 auto;
+}
+
+.submit-layout {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+.form-panel {
+  padding: 2rem;
+  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-strong);
+  box-shadow: var(--ui-shadow-md);
+}
+
+.form-row {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .form-group {
@@ -311,21 +372,21 @@ async function submitCommunity() {
   display: block;
   margin-bottom: 0.5rem;
   color: var(--vp-c-text-1);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-size: 1rem;
   font-family: inherit;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-group input:focus,
@@ -333,11 +394,12 @@ async function submitCommunity() {
 .form-group select:focus {
   outline: none;
   border-color: var(--vp-c-brand);
+  box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 140px;
 }
 
 .tag-selector {
@@ -347,14 +409,15 @@ async function submitCommunity() {
 }
 
 .tag-button {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  background: var(--vp-c-bg);
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
+  background: var(--ui-surface-soft);
   color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.3s;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .tag-button:hover {
@@ -365,7 +428,7 @@ async function submitCommunity() {
 .tag-button.selected {
   background: var(--vp-c-brand);
   color: white;
-  border-color: var(--vp-c-brand);
+  border-color: transparent;
 }
 
 .file-input {
@@ -375,19 +438,20 @@ async function submitCommunity() {
 .image-preview {
   position: relative;
   margin-top: 1rem;
-  max-width: 300px;
+  max-width: 320px;
 }
 
 .image-preview img {
   width: 100%;
-  border-radius: 6px;
-  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  border: 1px solid var(--ui-border);
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .remove-image {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.6rem;
+  right: 0.6rem;
   background: rgba(0, 0, 0, 0.7);
   color: white;
   border: none;
@@ -395,7 +459,7 @@ async function submitCommunity() {
   width: 30px;
   height: 30px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -407,38 +471,41 @@ async function submitCommunity() {
 }
 
 .message {
-  padding: 0.75rem;
-  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
   margin-bottom: 1rem;
+  border: 1px solid transparent;
 }
 
 .message.success {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background: rgba(63, 143, 92, 0.16);
+  color: var(--vp-c-brand-dark);
+  border-color: rgba(63, 143, 92, 0.3);
 }
 
 .message.error {
-  background: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
+  background: rgba(196, 73, 47, 0.16);
+  color: var(--vp-c-danger);
+  border-color: rgba(196, 73, 47, 0.3);
 }
 
 .submit-button {
   width: 100%;
-  background: var(--vp-c-brand);
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-ember));
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
   cursor: pointer;
   font-size: 1rem;
-  font-weight: 500;
-  transition: background 0.3s;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .submit-button:hover:not(:disabled) {
-  background: var(--vp-c-brand-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--ui-shadow-md);
 }
 
 .submit-button:disabled {
@@ -451,5 +518,31 @@ async function submitCommunity() {
   color: var(--vp-c-text-2);
   font-size: 0.875rem;
   margin-top: 1rem;
+}
+
+.side-panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.side-card {
+  padding: 1.5rem;
+  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.guide-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--vp-c-text-2);
+}
+
+@media (max-width: 960px) {
+  .submit-layout {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

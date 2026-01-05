@@ -43,7 +43,7 @@ async function handleLogout() {
 .user-menu {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .loading {
@@ -53,22 +53,27 @@ async function handleLogout() {
 .user-info {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-soft);
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .user-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  display: grid;
+  gap: 0.15rem;
 }
 
 .user-email {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--vp-c-text-1);
 }
 
 .user-uid {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--vp-c-text-3);
   font-family: monospace;
   cursor: help;
@@ -76,32 +81,33 @@ async function handleLogout() {
 
 .login-button,
 .logout-button {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
-  border: none;
+  border: 1px solid var(--ui-border);
 }
 
 .login-button {
-  background: var(--vp-c-brand);
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-ember));
   color: white;
+  border-color: transparent;
 }
 
 .login-button:hover {
-  background: var(--vp-c-brand-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .logout-button {
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-1);
-  border: 1px solid var(--vp-c-divider);
+  background: transparent;
+  color: var(--vp-c-text-2);
 }
 
 .logout-button:hover {
-  background: var(--vp-c-bg-mute);
+  color: var(--vp-c-text-1);
   border-color: var(--vp-c-brand);
 }
 </style>

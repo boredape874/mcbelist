@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+﻿import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: 'MCBeList',
@@ -10,7 +10,8 @@ export default defineConfig({
     nav: [
       { text: '홈', link: '/' },
       { text: '커뮤니티 목록', link: '/list' },
-      { text: '커뮤니티 등록', link: '/submit' }
+      { text: '커뮤니티 등록', link: '/submit' },
+      { text: '소개', link: '/about' }
     ],
 
     sidebar: [
@@ -29,7 +30,7 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Minecraft Bedrock Edition Community List',
+      message: 'MCBeList - 베드락 커뮤니티 지도',
       copyright: 'Copyright © 2024-present'
     }
   },

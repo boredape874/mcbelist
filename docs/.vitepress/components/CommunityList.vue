@@ -145,23 +145,33 @@ async function toggleDislike(community) {
 </script>
 
 <template>
-  <div>
-    <div v-if="loading" class="loading">
+  <div class="community-browser">
+    <div v-if="loading" class="state state--loading">
       로딩 중...
     </div>
 
-    <div v-else-if="error" class="error">
+    <div v-else-if="error" class="state state--error">
       오류가 발생했습니다: {{ error }}
     </div>
 
     <div v-else>
       <div class="filters">
-        <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="커뮤니티 검색 (이름, 설명, 태그)"
-          class="search-input"
-        />
+        <div class="filters__row">
+          <div class="search-field">
+            <span class="search-label">검색</span>
+            <input
+              v-model="searchQuery"
+              type="text"
+              placeholder="커뮤니티 검색 (이름, 설명, 태그)"
+              class="search-input"
+            />
+          </div>
+
+          <div class="result-summary">
+            <span class="result-count">총 {{ filteredCommunities.length }}개</span>
+            <span class="result-hint">승인된 커뮤니티만 표시됩니다</span>
+          </div>
+        </div>
 
         <div class="category-filter">
           <button
@@ -191,19 +201,34 @@ async function toggleDislike(community) {
       </div>
 
       <div v-else class="community-list">
-        <div v-for="community in filteredCommunities" :key="community.id" class="community-card">
+        <div
+          v-for="(community, index) in filteredCommunities"
+          :key="community.id"
+          class="community-card"
+          :style="{ '--stagger': index }"
+        >
           <div v-if="community.imageUrl" class="community-image">
             <img :src="community.imageUrl" :alt="community.name" />
           </div>
 
           <div class="community-content">
-            <h3>{{ community.name }}</h3>
+            <div class="community-header">
+              <h3 class="community-title">{{ community.name }}</h3>
+              <span class="category">{{ community.category }}</span>
+            </div>
+
             <p class="description">{{ community.description }}</p>
 
-            <div class="meta">
-              <span class="category">{{ community.category }}</span>
-              <span v-if="community.tags && community.tags.length > 0" class="tags">
-                <span v-for="tag in community.tags" :key="tag" class="tag">{{ tag }}</span>
+            <div v-if="community.tags && community.tags.length > 0" class="tags">
+              <span v-for="tag in community.tags" :key="tag" class="tag">{{ tag }}</span>
+            </div>
+
+            <div class="metrics">
+              <span
+                v-if="community.memberCount !== undefined && community.memberCount !== null"
+                class="metric"
+              >
+                현재 인원 {{ community.memberCount }}명
               </span>
             </div>
 
@@ -237,52 +262,102 @@ async function toggleDislike(community) {
 </template>
 
 <style scoped>
-.loading, .error {
-  text-align: center;
-  padding: 2rem;
-  color: var(--vp-c-text-2);
+.community-browser {
+  display: grid;
+  gap: 2rem;
 }
 
-.error {
+.state {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  color: var(--vp-c-text-2);
+  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-strong);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.state--error {
   color: var(--vp-c-danger);
 }
 
 .filters {
-  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.filters__row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.search-field {
+  flex: 1;
+  min-width: 220px;
+}
+
+.search-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--vp-c-text-3);
 }
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 14px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-size: 1rem;
-  margin-bottom: 1rem;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .search-input:focus {
   outline: none;
   border-color: var(--vp-c-brand);
+  box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
+}
+
+.result-summary {
+  display: grid;
+  gap: 0.25rem;
+  text-align: right;
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
+}
+
+.result-count {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
 }
 
 .category-filter {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .category-btn {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  background: var(--vp-c-bg);
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
+  background: var(--ui-surface-soft);
   color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.3s;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .category-btn:hover {
@@ -293,37 +368,44 @@ async function toggleDislike(community) {
 .category-btn.active {
   background: var(--vp-c-brand);
   color: white;
-  border-color: var(--vp-c-brand);
+  border-color: transparent;
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .empty {
   text-align: center;
   padding: 3rem 2rem;
   color: var(--vp-c-text-2);
+  border-radius: var(--ui-radius-lg);
+  border: 1px dashed var(--ui-border);
 }
 
 .community-list {
   display: grid;
   gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .community-card {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
   overflow: hidden;
-  background: var(--vp-c-bg-soft);
+  background: var(--ui-surface-strong);
   transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  animation: rise-in 0.6s ease both;
+  animation-delay: calc(var(--stagger, 0) * 80ms);
 }
 
 .community-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: var(--ui-shadow-md);
 }
 
 .community-image {
   width: 100%;
-  height: 200px;
+  height: 180px;
   overflow: hidden;
   background: var(--vp-c-bg);
 }
@@ -335,109 +417,147 @@ async function toggleDislike(community) {
 }
 
 .community-content {
-  padding: 1.5rem;
+  padding: 1.4rem;
+  display: grid;
+  gap: 0.75rem;
 }
 
-.community-card h3 {
-  margin: 0 0 0.75rem 0;
-  color: var(--vp-c-brand);
-  font-size: 1.25rem;
+.community-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.community-title {
+  margin: 0;
+  color: var(--vp-c-text-1);
+  font-size: 1.2rem;
 }
 
 .description {
   color: var(--vp-c-text-2);
-  margin: 0 0 1rem 0;
+  margin: 0;
   line-height: 1.6;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
-.meta {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-
 .category {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand);
-  border-radius: 4px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  background: rgba(63, 143, 92, 0.16);
+  color: var(--vp-c-brand-dark);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .tags {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
+  display: inline-flex;
+  padding: 0.25rem 0.6rem;
   background: var(--vp-c-bg);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  font-size: 0.75rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
+  font-size: 0.72rem;
   color: var(--vp-c-text-2);
+}
+
+.metrics {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.metric {
+  display: inline-flex;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(90, 169, 180, 0.14);
+  color: var(--vp-c-text-2);
+  font-size: 0.72rem;
+  font-weight: 600;
 }
 
 .actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--vp-c-divider);
+  margin-top: 0.3rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--ui-border);
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .reactions {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .reaction-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  background: var(--vp-c-bg);
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
+  background: var(--ui-surface-soft);
   color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.3s;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .reaction-btn:hover {
   border-color: var(--vp-c-brand);
-  transform: scale(1.05);
+  transform: translateY(-1px);
 }
 
 .reaction-btn.active {
   background: var(--vp-c-brand-soft);
   border-color: var(--vp-c-brand);
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-dark);
 }
 
 .link {
-  display: inline-block;
-  color: var(--vp-c-brand);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--vp-c-brand-dark);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  background: var(--vp-c-bg);
+  font-weight: 600;
+  transition: all 0.2s;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
   border: 1px solid var(--vp-c-brand);
+  background: transparent;
 }
 
 .link:hover {
   background: var(--vp-c-brand);
   color: white;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .filters__row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .result-summary {
+    text-align: left;
+  }
 }
 </style>
