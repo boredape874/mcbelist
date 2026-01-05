@@ -409,20 +409,20 @@ async function submitCommunity() {
 }
 
 .tag-button {
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.85rem;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
   background: var(--ui-surface-muted);
   color: var(--vp-c-text-2);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
   font-size: 0.85rem;
   font-weight: 600;
 }
 
 .tag-button:hover {
   border-color: var(--vp-c-brand);
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-dark);
   background: var(--vp-c-brand-soft);
 }
 
@@ -479,9 +479,9 @@ async function submitCommunity() {
 }
 
 .message.success {
-  background: rgba(37, 99, 235, 0.12);
+  background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-dark);
-  border-color: rgba(37, 99, 235, 0.24);
+  border-color: rgba(31, 111, 235, 0.24);
 }
 
 .message.error {
@@ -547,6 +547,7 @@ async function submitCommunity() {
   }
 }
 </style>
+
 
 
 

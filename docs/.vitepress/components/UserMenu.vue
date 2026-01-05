@@ -41,41 +41,52 @@ async function handleLogout() {
 
 <style scoped>
 .user-menu {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+  flex-wrap: nowrap;
 }
 
 .loading {
   color: var(--vp-c-text-2);
+  font-size: 0.85rem;
 }
 
 .user-info {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.35rem 0.6rem;
   border-radius: var(--ui-radius-sm);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-muted);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow-sm);
+  max-width: 260px;
 }
 
 .user-details {
   display: grid;
-  gap: 0.15rem;
+  gap: 0.12rem;
+  min-width: 0;
 }
 
 .user-email {
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--vp-c-text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-uid {
   font-size: 0.7rem;
   color: var(--vp-c-text-3);
-  font-family: monospace;
+  font-family: var(--vp-font-family-mono);
   cursor: help;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .login-button,
@@ -85,24 +96,25 @@ async function handleLogout() {
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
-  border: 1px solid var(--ui-border);
+  transition: transform 0.2s, box-shadow 0.2s, color 0.2s, background 0.2s;
+  border: 1px solid transparent;
 }
 
 .login-button {
   background: var(--vp-c-brand);
   color: white;
-  border-color: transparent;
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .login-button:hover {
   transform: translateY(-1px);
-  box-shadow: var(--ui-shadow-sm);
+  box-shadow: var(--ui-shadow-md);
 }
 
 .logout-button {
-  background: transparent;
+  background: var(--ui-surface-muted);
   color: var(--vp-c-text-2);
+  border-color: var(--ui-border);
 }
 
 .logout-button:hover {

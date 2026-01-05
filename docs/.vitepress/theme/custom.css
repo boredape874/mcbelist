@@ -1,33 +1,33 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Song+Myung&family=JetBrains+Mono:wght@400;500&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --vp-font-family-base: 'Noto Sans KR', sans-serif;
+  --vp-font-family-base: 'Gowun Dodum', sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', monospace;
-  --vp-font-family-title: 'Song Myung', serif;
+  --vp-font-family-title: 'Gowun Batang', serif;
 
-  --ui-paper: #f5f2ed;
-  --ui-paper-soft: #ece8e1;
+  --ui-bg: #f5f1ea;
+  --ui-bg-soft: #ede7dd;
   --ui-surface: #ffffff;
-  --ui-surface-muted: #f2f5fb;
-  --ui-ink: #151515;
-  --ui-ink-soft: #4a4f57;
+  --ui-surface-muted: #f3f5fb;
+  --ui-ink: #141414;
+  --ui-ink-soft: #4b5563;
   --ui-ink-fade: #7a8797;
   --ui-brand: #1f6feb;
   --ui-brand-dark: #1652b7;
   --ui-brand-soft: rgba(31, 111, 235, 0.14);
   --ui-heat: #ff7a41;
-  --ui-border: rgba(21, 21, 21, 0.12);
-  --ui-border-strong: rgba(21, 21, 21, 0.2);
+  --ui-border: rgba(20, 20, 20, 0.12);
+  --ui-border-strong: rgba(20, 20, 20, 0.2);
   --ui-shadow-sm: 0 8px 18px rgba(15, 17, 20, 0.08);
-  --ui-shadow-md: 0 18px 36px rgba(15, 17, 20, 0.12);
+  --ui-shadow-md: 0 20px 36px rgba(15, 17, 20, 0.12);
   --ui-shadow-lg: 0 32px 64px rgba(15, 17, 20, 0.16);
   --ui-radius-xl: 20px;
   --ui-radius-lg: 16px;
   --ui-radius-md: 12px;
   --ui-radius-sm: 8px;
 
-  --vp-c-bg: var(--ui-paper);
-  --vp-c-bg-soft: var(--ui-paper-soft);
+  --vp-c-bg: var(--ui-bg);
+  --vp-c-bg-soft: var(--ui-bg-soft);
   --vp-c-bg-mute: var(--ui-surface-muted);
   --vp-c-bg-elv: var(--ui-surface);
   --vp-c-text-1: var(--ui-ink);
@@ -48,8 +48,8 @@
 }
 
 .dark {
-  --ui-paper: #0f1116;
-  --ui-paper-soft: #161c26;
+  --ui-bg: #0f1116;
+  --ui-bg-soft: #161c26;
   --ui-surface: #1b2230;
   --ui-surface-muted: #232c3a;
   --ui-ink: #f4f6f9;
@@ -72,18 +72,18 @@
 
 body {
   font-family: var(--vp-font-family-base);
-  background: var(--ui-paper);
+  background: var(--ui-bg);
   color: var(--ui-ink);
 }
 
 #app,
 .VPApp {
   min-height: 100%;
-  background-color: var(--ui-paper);
+  background-color: var(--ui-bg);
   background-image:
     radial-gradient(circle at 12% 8%, rgba(31, 111, 235, 0.14), transparent 40%),
     radial-gradient(circle at 85% 10%, rgba(255, 122, 65, 0.18), transparent 42%),
-    linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(245, 242, 237, 0.98));
+    linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(245, 241, 234, 0.98));
   background-attachment: fixed;
 }
 
@@ -173,15 +173,8 @@ body {
 .VPNavBarMenu {
   flex: 1 1 auto;
   min-width: 0;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  overflow-x: auto;
-  overflow-y: visible;
-  scrollbar-width: none;
-}
-
-.VPNavBarMenu::-webkit-scrollbar {
-  height: 0;
 }
 
 .user-menu {

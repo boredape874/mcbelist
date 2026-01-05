@@ -345,7 +345,7 @@ const isUserAdmin = computed(() => {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  gap: 1.5rem;
+  gap: 1.8rem;
 }
 
 .admin-summary {
@@ -355,11 +355,23 @@ const isUserAdmin = computed(() => {
 }
 
 .summary-card {
-  padding: 1rem 1.3rem;
+  position: relative;
+  padding: 1.2rem 1.4rem;
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
   background: var(--ui-surface);
   box-shadow: var(--ui-shadow-sm);
+  overflow: hidden;
+}
+
+.summary-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--vp-c-brand), var(--ui-heat));
 }
 
 .summary-label {
@@ -380,11 +392,12 @@ const isUserAdmin = computed(() => {
 
 .tabs {
   display: inline-flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   padding: 0.35rem;
   border-radius: var(--ui-radius-sm);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-muted);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .tab {
@@ -396,7 +409,8 @@ const isUserAdmin = computed(() => {
   font-size: 0.9rem;
   font-weight: 600;
   border-radius: var(--ui-radius-sm);
-  transition: all 0.3s;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .tab:hover {
@@ -404,8 +418,8 @@ const isUserAdmin = computed(() => {
 }
 
 .tab.active {
-  background: var(--vp-c-brand);
-  color: white;
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-heat));
+  color: #fff;
   box-shadow: var(--ui-shadow-sm);
 }
 
@@ -429,6 +443,7 @@ const isUserAdmin = computed(() => {
 }
 
 .admin-card {
+  position: relative;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-lg);
   overflow: hidden;
@@ -437,6 +452,16 @@ const isUserAdmin = computed(() => {
   transition: transform 0.2s, box-shadow 0.2s;
   animation: rise 0.6s ease both;
   animation-delay: calc(var(--stagger, 0) * 80ms);
+}
+
+.admin-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--vp-c-brand), var(--ui-heat));
 }
 
 .admin-card:hover {
@@ -458,16 +483,17 @@ const isUserAdmin = computed(() => {
 }
 
 .card-content {
-  padding: 1.5rem;
+  padding: 1.6rem;
   display: grid;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.8rem;
+  min-width: 0;
 }
 
 .admin-card h3 {
@@ -477,6 +503,7 @@ const isUserAdmin = computed(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .description {
@@ -503,6 +530,7 @@ const isUserAdmin = computed(() => {
   border-radius: var(--ui-radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .tags {
@@ -539,7 +567,7 @@ const isUserAdmin = computed(() => {
 }
 
 .order-control {
-  padding: 0.75rem;
+  padding: 0.75rem 0.9rem;
   background: var(--ui-surface-muted);
   border-radius: var(--ui-radius-md);
   border: 1px solid var(--ui-border);
@@ -551,6 +579,7 @@ const isUserAdmin = computed(() => {
   gap: 0.5rem;
   font-size: 0.85rem;
   color: var(--vp-c-text-2);
+  flex-wrap: wrap;
 }
 
 .order-input {
@@ -579,7 +608,8 @@ const isUserAdmin = computed(() => {
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 600;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .btn-approve {

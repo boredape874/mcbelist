@@ -219,7 +219,7 @@ async function signInWithGoogle() {
   border-radius: var(--ui-radius-sm);
   display: grid;
   place-items: center;
-  transition: background 0.2s, color 0.2s;
+  transition: color 0.2s, background 0.2s;
 }
 
 .close-button:hover {
@@ -340,7 +340,7 @@ input:focus {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -362,6 +362,7 @@ input:focus {
   cursor: not-allowed;
 }
 </style>
+
 
 
 
