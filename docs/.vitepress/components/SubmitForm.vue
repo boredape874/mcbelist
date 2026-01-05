@@ -340,8 +340,9 @@ async function submitCommunity() {
 }
 
 .submit-form {
-  max-width: 1080px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
+  width: 100%;
 }
 
 .submit-layout {

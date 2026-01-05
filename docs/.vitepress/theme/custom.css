@@ -4,6 +4,7 @@
   --vp-font-family-base: 'IBM Plex Sans KR', 'Noto Sans KR', sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', monospace;
   --vp-font-family-title: 'Nanum Myeongjo', serif;
+  --vp-sidebar-width: 220px;
 
   --ui-bg: #f7f4ee;
   --ui-bg-soft: #efe8de;
@@ -207,6 +208,28 @@ body {
   background: var(--vp-c-brand-soft);
 }
 
+@media (min-width: 960px) {
+  .VPNavBar.has-sidebar .title {
+    padding-left: 12px;
+    padding-right: 0;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1440px) {
+  .VPNavBar.has-sidebar .title {
+    padding-left: 12px;
+    width: var(--vp-sidebar-width);
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-right: 0;
+  }
+}
+
 .VPSidebar {
   background: var(--ui-surface);
   border-right: 1px solid var(--ui-border);
@@ -236,6 +259,7 @@ body {
   bottom: 0;
   left: 0;
   overflow-y: auto;
+  padding-top: calc(var(--vp-nav-height) + 12px) !important;
 }
 
 .VPSidebar .curtain {
