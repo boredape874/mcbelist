@@ -41,7 +41,7 @@ async function handleLogout() {
 
 <style scoped>
 .user-menu {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.6rem;
   flex-wrap: nowrap;
@@ -53,7 +53,7 @@ async function handleLogout() {
 }
 
 .user-info {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.35rem 0.6rem;
@@ -98,11 +98,12 @@ async function handleLogout() {
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s, color 0.2s, background 0.2s;
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 
 .login-button {
   background: var(--vp-c-brand);
-  color: white;
+  color: #fff;
   box-shadow: var(--ui-shadow-sm);
 }
 

@@ -264,12 +264,12 @@ async function toggleDislike(community) {
 <style scoped>
 .community-browser {
   display: grid;
-  gap: 1.8rem;
+  gap: 1.6rem;
 }
 
 .state {
   text-align: center;
-  padding: 2.1rem 1.5rem;
+  padding: 2rem 1.6rem;
   color: var(--vp-c-text-2);
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
@@ -282,7 +282,9 @@ async function toggleDislike(community) {
 }
 
 .filters {
-  padding: 1.4rem;
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
   background: var(--ui-surface);
@@ -292,7 +294,7 @@ async function toggleDislike(community) {
 .filters__row {
   display: flex;
   align-items: flex-end;
-  gap: 1.2rem;
+  gap: 1.1rem;
   flex-wrap: wrap;
 }
 
@@ -305,7 +307,7 @@ async function toggleDislike(community) {
   display: block;
   margin-bottom: 0.4rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--vp-c-text-3);
@@ -313,13 +315,13 @@ async function toggleDislike(community) {
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 0.9rem;
+  padding: 0.7rem 0.85rem;
   border: 1px solid var(--ui-border-strong);
   border-radius: var(--ui-radius-md);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .search-input:focus {
@@ -330,7 +332,7 @@ async function toggleDislike(community) {
 
 .result-summary {
   display: grid;
-  gap: 0.25rem;
+  gap: 0.2rem;
   text-align: right;
   color: var(--vp-c-text-2);
   font-size: 0.9rem;
@@ -345,11 +347,10 @@ async function toggleDislike(community) {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
 }
 
 .category-btn {
-  padding: 0.35rem 0.85rem;
+  padding: 0.32rem 0.8rem;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
   background: var(--ui-surface-muted);
@@ -374,7 +375,7 @@ async function toggleDislike(community) {
 
 .empty {
   text-align: center;
-  padding: 3rem 2rem;
+  padding: 2.8rem 2rem;
   color: var(--vp-c-text-2);
   border-radius: var(--ui-radius-lg);
   border: 1px dashed var(--ui-border);
@@ -382,43 +383,44 @@ async function toggleDislike(community) {
 
 .community-list {
   display: grid;
-  gap: 1.4rem;
+  gap: 1.3rem;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .community-card {
+  position: relative;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-lg);
   overflow: hidden;
   background: var(--ui-surface);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
   box-shadow: var(--ui-shadow-sm);
-  position: relative;
-  animation: rise 0.6s ease both;
-  animation-delay: calc(var(--stagger, 0) * 80ms);
+  animation: float-up 0.6s ease both;
+  animation-delay: calc(var(--stagger, 0) * 70ms);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.community-card::before {
+.community-card::after {
   content: '';
   position: absolute;
-  top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--vp-c-brand), var(--ui-heat));
+  top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ui-brand), var(--ui-accent));
 }
 
 .community-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: var(--ui-shadow-md);
 }
 
 .community-image {
   width: 100%;
-  height: 180px;
+  height: 170px;
   overflow: hidden;
-  background: var(--vp-c-bg);
+  background: var(--ui-surface-muted);
 }
 
 .community-image img {
@@ -428,25 +430,27 @@ async function toggleDislike(community) {
 }
 
 .community-content {
-  padding: 1.4rem;
+  padding: 1.2rem 1.3rem 1.4rem;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.65rem;
 }
 
 .community-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.7rem;
+  gap: 0.6rem;
+  min-width: 0;
 }
 
 .community-title {
   margin: 0;
   color: var(--vp-c-text-1);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .description {
@@ -454,7 +458,7 @@ async function toggleDislike(community) {
   margin: 0;
   line-height: 1.6;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -462,11 +466,11 @@ async function toggleDislike(community) {
 .category {
   display: inline-flex;
   align-items: center;
-  padding: 0.28rem 0.6rem;
+  padding: 0.25rem 0.55rem;
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-dark);
   border-radius: var(--ui-radius-sm);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -479,26 +483,26 @@ async function toggleDislike(community) {
 
 .tag {
   display: inline-flex;
-  padding: 0.22rem 0.55rem;
+  padding: 0.2rem 0.5rem;
   background: var(--ui-surface-muted);
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--vp-c-text-2);
 }
 
 .metrics {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .metric {
   display: inline-flex;
-  padding: 0.22rem 0.55rem;
+  padding: 0.2rem 0.5rem;
   border-radius: var(--ui-radius-sm);
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-text-2);
+  background: var(--ui-accent-soft);
+  color: var(--ui-ink-soft);
   font-size: 0.72rem;
   font-weight: 600;
 }
@@ -507,10 +511,10 @@ async function toggleDislike(community) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0.3rem;
-  padding-top: 0.75rem;
+  margin-top: 0.2rem;
+  padding-top: 0.7rem;
   border-top: 1px dashed var(--ui-border);
-  gap: 0.7rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
 }
 
@@ -524,20 +528,20 @@ async function toggleDislike(community) {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  padding: 0.32rem 0.8rem;
+  padding: 0.3rem 0.75rem;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
   background: var(--ui-surface-muted);
   color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
 }
 
 .reaction-btn:hover {
   border-color: var(--vp-c-brand);
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-dark);
 }
 
 .reaction-btn.active {
@@ -554,7 +558,7 @@ async function toggleDislike(community) {
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s;
-  padding: 0.32rem 0.95rem;
+  padding: 0.3rem 0.85rem;
   border-radius: var(--ui-radius-sm);
   border: 1px solid var(--vp-c-text-1);
   background: transparent;

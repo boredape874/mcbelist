@@ -323,7 +323,7 @@ async function submitCommunity() {
 
 .login-button {
   background: var(--vp-c-brand);
-  color: white;
+  color: #fff;
   border: none;
   padding: 0.75rem 1.4rem;
   border-radius: var(--ui-radius-sm);
@@ -340,18 +340,18 @@ async function submitCommunity() {
 }
 
 .submit-form {
-  max-width: 1100px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
 .submit-layout {
   display: grid;
-  gap: 2rem;
+  gap: 1.8rem;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
 }
 
 .form-panel {
-  padding: 2rem;
+  padding: 1.8rem;
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
   background: var(--ui-surface);
@@ -360,12 +360,12 @@ async function submitCommunity() {
 
 .form-row {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.2rem;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .form-group label {
@@ -379,14 +379,14 @@ async function submitCommunity() {
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 0.8rem 0.9rem;
+  padding: 0.75rem 0.9rem;
   border: 1px solid var(--ui-border-strong);
   border-radius: var(--ui-radius-md);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-size: 1rem;
   font-family: inherit;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-group input:focus,
@@ -409,7 +409,7 @@ async function submitCommunity() {
 }
 
 .tag-button {
-  padding: 0.35rem 0.85rem;
+  padding: 0.32rem 0.85rem;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
   background: var(--ui-surface-muted);
@@ -428,7 +428,7 @@ async function submitCommunity() {
 
 .tag-button.selected {
   background: var(--vp-c-brand);
-  color: white;
+  color: #fff;
   border-color: transparent;
 }
 
@@ -453,8 +453,8 @@ async function submitCommunity() {
   position: absolute;
   top: 0.6rem;
   right: 0.6rem;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
   border: none;
   border-radius: 50%;
   width: 30px;
@@ -464,15 +464,15 @@ async function submitCommunity() {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s;
+  transition: background 0.2s;
 }
 
 .remove-image:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.85);
 }
 
 .message {
-  padding: 0.85rem 1rem;
+  padding: 0.8rem 0.95rem;
   border-radius: var(--ui-radius-md);
   margin-bottom: 1rem;
   border: 1px solid transparent;
@@ -481,19 +481,19 @@ async function submitCommunity() {
 .message.success {
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-dark);
-  border-color: rgba(31, 111, 235, 0.24);
+  border-color: rgba(27, 144, 127, 0.28);
 }
 
 .message.error {
-  background: rgba(224, 86, 77, 0.16);
+  background: var(--vp-c-danger-soft);
   color: var(--vp-c-danger);
-  border-color: rgba(224, 86, 77, 0.3);
+  border-color: rgba(224, 90, 79, 0.3);
 }
 
 .submit-button {
   width: 100%;
-  background: var(--vp-c-brand);
-  color: white;
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-accent));
+  color: #fff;
   border: none;
   padding: 0.85rem 1.5rem;
   border-radius: var(--ui-radius-sm);
@@ -528,7 +528,7 @@ async function submitCommunity() {
 }
 
 .side-card {
-  padding: 1.5rem;
+  padding: 1.4rem;
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
   background: var(--ui-surface);

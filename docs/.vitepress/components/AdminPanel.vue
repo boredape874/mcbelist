@@ -364,14 +364,13 @@ const isUserAdmin = computed(() => {
   overflow: hidden;
 }
 
-.summary-card::before {
+.summary-card::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--vp-c-brand), var(--ui-heat));
+  inset: 0;
+  background: linear-gradient(120deg, rgba(27, 144, 127, 0.08), transparent 60%);
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .summary-label {
@@ -418,7 +417,7 @@ const isUserAdmin = computed(() => {
 }
 
 .tab.active {
-  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-heat));
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-accent));
   color: #fff;
   box-shadow: var(--ui-shadow-sm);
 }
@@ -450,8 +449,8 @@ const isUserAdmin = computed(() => {
   background: var(--ui-surface);
   box-shadow: var(--ui-shadow-sm);
   transition: transform 0.2s, box-shadow 0.2s;
-  animation: rise 0.6s ease both;
-  animation-delay: calc(var(--stagger, 0) * 80ms);
+  animation: float-up 0.6s ease both;
+  animation-delay: calc(var(--stagger, 0) * 70ms);
 }
 
 .admin-card::before {
@@ -460,12 +459,12 @@ const isUserAdmin = computed(() => {
   left: 0;
   right: 0;
   top: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--vp-c-brand), var(--ui-heat));
+  height: 4px;
+  background: linear-gradient(90deg, var(--ui-brand), var(--ui-accent));
 }
 
 .admin-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: var(--ui-shadow-md);
 }
 
@@ -485,7 +484,7 @@ const isUserAdmin = computed(() => {
 .card-content {
   padding: 1.6rem;
   display: grid;
-  gap: 0.85rem;
+  gap: 0.8rem;
 }
 
 .card-header {
@@ -613,17 +612,17 @@ const isUserAdmin = computed(() => {
 }
 
 .btn-approve {
-  background: #10b981;
-  color: white;
+  background: #16a34a;
+  color: #fff;
 }
 
 .btn-approve:hover {
-  background: #059669;
+  background: #12813a;
 }
 
 .btn-reject {
   background: #f59e0b;
-  color: white;
+  color: #fff;
 }
 
 .btn-reject:hover {
@@ -632,7 +631,7 @@ const isUserAdmin = computed(() => {
 
 .btn-delete {
   background: #ef4444;
-  color: white;
+  color: #fff;
 }
 
 .btn-delete:hover {

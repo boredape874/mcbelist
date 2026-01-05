@@ -1,27 +1,28 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
 
 :root {
-  --vp-font-family-base: 'Gowun Dodum', sans-serif;
+  --vp-font-family-base: 'IBM Plex Sans KR', 'Noto Sans KR', sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', monospace;
-  --vp-font-family-title: 'Gowun Batang', serif;
+  --vp-font-family-title: 'Nanum Myeongjo', serif;
 
-  --ui-bg: #f5f1ea;
-  --ui-bg-soft: #ede7dd;
+  --ui-bg: #f7f4ee;
+  --ui-bg-soft: #efe8de;
   --ui-surface: #ffffff;
-  --ui-surface-muted: #f3f5fb;
-  --ui-ink: #141414;
-  --ui-ink-soft: #4b5563;
-  --ui-ink-fade: #7a8797;
-  --ui-brand: #1f6feb;
-  --ui-brand-dark: #1652b7;
-  --ui-brand-soft: rgba(31, 111, 235, 0.14);
-  --ui-heat: #ff7a41;
-  --ui-border: rgba(20, 20, 20, 0.12);
-  --ui-border-strong: rgba(20, 20, 20, 0.2);
-  --ui-shadow-sm: 0 8px 18px rgba(15, 17, 20, 0.08);
-  --ui-shadow-md: 0 20px 36px rgba(15, 17, 20, 0.12);
-  --ui-shadow-lg: 0 32px 64px rgba(15, 17, 20, 0.16);
-  --ui-radius-xl: 20px;
+  --ui-surface-muted: #f1f4f6;
+  --ui-ink: #1b1b1b;
+  --ui-ink-soft: #4c5564;
+  --ui-ink-fade: #7b8795;
+  --ui-brand: #1b907f;
+  --ui-brand-dark: #116a5e;
+  --ui-brand-soft: rgba(27, 144, 127, 0.16);
+  --ui-accent: #f08b3e;
+  --ui-accent-soft: rgba(240, 139, 62, 0.18);
+  --ui-border: rgba(27, 27, 27, 0.12);
+  --ui-border-strong: rgba(27, 27, 27, 0.2);
+  --ui-shadow-sm: 0 8px 18px rgba(18, 20, 24, 0.08);
+  --ui-shadow-md: 0 18px 36px rgba(18, 20, 24, 0.12);
+  --ui-shadow-lg: 0 32px 64px rgba(18, 20, 24, 0.16);
+  --ui-radius-xl: 22px;
   --ui-radius-lg: 16px;
   --ui-radius-md: 12px;
   --ui-radius-sm: 8px;
@@ -36,34 +37,35 @@
   --vp-c-divider: var(--ui-border);
 
   --vp-c-brand: var(--ui-brand);
-  --vp-c-brand-light: #4b8fff;
-  --vp-c-brand-lighter: #77acff;
+  --vp-c-brand-light: #2db6a1;
+  --vp-c-brand-lighter: #69d6c7;
   --vp-c-brand-dark: var(--ui-brand-dark);
-  --vp-c-brand-darker: #11326e;
-  --vp-c-brand-dimm: rgba(31, 111, 235, 0.12);
+  --vp-c-brand-darker: #0a463e;
+  --vp-c-brand-dimm: rgba(27, 144, 127, 0.12);
   --vp-c-brand-soft: var(--ui-brand-soft);
 
-  --vp-c-danger: #e0564d;
-  --vp-c-danger-soft: rgba(224, 86, 77, 0.12);
+  --vp-c-danger: #e05a4f;
+  --vp-c-danger-soft: rgba(224, 90, 79, 0.14);
 }
 
 .dark {
-  --ui-bg: #0f1116;
-  --ui-bg-soft: #161c26;
-  --ui-surface: #1b2230;
-  --ui-surface-muted: #232c3a;
-  --ui-ink: #f4f6f9;
-  --ui-ink-soft: #c0c7d4;
-  --ui-ink-fade: #8e98aa;
-  --ui-brand: #4f8bff;
-  --ui-brand-dark: #2f66d6;
-  --ui-brand-soft: rgba(79, 139, 255, 0.2);
-  --ui-heat: #ff9b52;
-  --ui-border: rgba(244, 246, 249, 0.12);
-  --ui-border-strong: rgba(244, 246, 249, 0.2);
-  --ui-shadow-sm: 0 10px 24px rgba(6, 8, 12, 0.55);
-  --ui-shadow-md: 0 22px 40px rgba(6, 8, 12, 0.6);
-  --ui-shadow-lg: 0 36px 64px rgba(6, 8, 12, 0.65);
+  --ui-bg: #101417;
+  --ui-bg-soft: #161c1f;
+  --ui-surface: #1b2226;
+  --ui-surface-muted: #232b30;
+  --ui-ink: #f4f7f5;
+  --ui-ink-soft: #c5ced0;
+  --ui-ink-fade: #93a0a6;
+  --ui-brand: #39bba6;
+  --ui-brand-dark: #1f8677;
+  --ui-brand-soft: rgba(57, 187, 166, 0.2);
+  --ui-accent: #ff9a57;
+  --ui-accent-soft: rgba(255, 154, 87, 0.18);
+  --ui-border: rgba(244, 247, 245, 0.12);
+  --ui-border-strong: rgba(244, 247, 245, 0.2);
+  --ui-shadow-sm: 0 10px 24px rgba(3, 6, 8, 0.6);
+  --ui-shadow-md: 0 22px 40px rgba(3, 6, 8, 0.62);
+  --ui-shadow-lg: 0 36px 64px rgba(3, 6, 8, 0.66);
 }
 
 * {
@@ -81,18 +83,18 @@ body {
   min-height: 100%;
   background-color: var(--ui-bg);
   background-image:
-    radial-gradient(circle at 12% 8%, rgba(31, 111, 235, 0.14), transparent 40%),
-    radial-gradient(circle at 85% 10%, rgba(255, 122, 65, 0.18), transparent 42%),
-    linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(245, 241, 234, 0.98));
+    radial-gradient(circle at 12% 10%, rgba(27, 144, 127, 0.16), transparent 42%),
+    radial-gradient(circle at 90% 5%, rgba(240, 139, 62, 0.2), transparent 45%),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.95), rgba(247, 244, 238, 0.98));
   background-attachment: fixed;
 }
 
 .dark #app,
 .dark .VPApp {
   background-image:
-    radial-gradient(circle at 12% 8%, rgba(79, 139, 255, 0.16), transparent 42%),
-    radial-gradient(circle at 85% 10%, rgba(255, 155, 82, 0.14), transparent 44%),
-    linear-gradient(140deg, rgba(12, 14, 18, 0.98), rgba(10, 12, 16, 0.98));
+    radial-gradient(circle at 12% 10%, rgba(57, 187, 166, 0.18), transparent 44%),
+    radial-gradient(circle at 90% 5%, rgba(255, 154, 87, 0.15), transparent 46%),
+    linear-gradient(140deg, rgba(12, 15, 18, 0.98), rgba(12, 15, 18, 0.98));
 }
 
 #app::before,
@@ -102,8 +104,7 @@ body {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(transparent 23px, rgba(21, 21, 21, 0.035) 24px),
-    linear-gradient(90deg, transparent 23px, rgba(21, 21, 21, 0.035) 24px);
+    radial-gradient(circle at 1px 1px, rgba(22, 24, 28, 0.06) 1px, transparent 0);
   background-size: 24px 24px;
   opacity: 0.35;
   z-index: 0;
@@ -112,15 +113,14 @@ body {
 .dark #app::before,
 .dark .VPApp::before {
   background-image:
-    linear-gradient(transparent 23px, rgba(244, 246, 249, 0.06) 24px),
-    linear-gradient(90deg, transparent 23px, rgba(244, 246, 249, 0.06) 24px);
+    radial-gradient(circle at 1px 1px, rgba(240, 243, 245, 0.08) 1px, transparent 0);
   opacity: 0.25;
 }
 
 .VPNav {
   position: static !important;
-  border-bottom: 1px solid var(--ui-border);
   background: var(--ui-surface);
+  border-bottom: 1px solid var(--ui-border);
   z-index: 5;
 }
 
@@ -128,9 +128,9 @@ body {
   position: static !important;
   height: auto !important;
   min-height: 0 !important;
-  padding: 0.85rem 0;
+  padding: 0.9rem 0;
   background: transparent;
-  backdrop-filter: none;
+  box-shadow: none;
   overflow: visible;
 }
 
@@ -158,15 +158,15 @@ body {
 .VPNavBar .content-body {
   flex-wrap: wrap;
   row-gap: 0.6rem;
-  column-gap: 0.75rem;
+  column-gap: 0.7rem;
   align-items: center;
   min-width: 0;
 }
 
 .VPNavBarTitle .title {
   font-family: var(--vp-font-family-title);
-  letter-spacing: 0.02em;
   font-size: 1.1rem;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 
@@ -174,7 +174,7 @@ body {
   flex: 1 1 auto;
   min-width: 0;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .user-menu {
@@ -185,15 +185,16 @@ body {
 .VPNavBarMenuLink {
   display: inline-flex;
   align-items: center;
-  padding: 0.32rem 0.7rem;
+  padding: 0.3rem 0.7rem;
   border-radius: var(--ui-radius-sm);
+  border: 1px solid transparent;
   font-weight: 600;
   letter-spacing: 0.01em;
   white-space: nowrap;
   max-width: 160px;
   overflow: hidden;
   text-overflow: ellipsis;
-  border: 1px solid transparent;
+  transition: all 0.2s ease;
 }
 
 .VPNavBarMenuLink.active {
@@ -204,10 +205,6 @@ body {
 .VPNavBarMenuLink:hover {
   color: var(--vp-c-brand-dark);
   background: var(--vp-c-brand-soft);
-}
-
-.VPNavBarMenuGroup .text {
-  font-weight: 600;
 }
 
 .VPSidebar {
@@ -237,22 +234,18 @@ body {
   z-index: 1;
 }
 
-.VPHome {
-  margin-bottom: 120px;
-}
-
 .VPHomeHero {
   position: relative;
-  padding: 3.4rem 0 2.3rem;
+  padding: 3.6rem 0 2.4rem;
 }
 
 .VPHomeHero::before {
   content: '';
   position: absolute;
   inset: 18% 0 auto 0;
-  height: 200px;
+  height: 210px;
   border-radius: var(--ui-radius-xl);
-  background: linear-gradient(120deg, rgba(31, 111, 235, 0.2), rgba(255, 122, 65, 0.24));
+  background: linear-gradient(120deg, rgba(27, 144, 127, 0.2), rgba(240, 139, 62, 0.2));
   filter: blur(18px);
   opacity: 0.8;
   z-index: -1;
@@ -260,7 +253,7 @@ body {
 
 .VPHomeHero .name {
   font-family: var(--vp-font-family-title);
-  font-size: clamp(2.5rem, 6vw, 4.1rem);
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
   letter-spacing: 0.02em;
   white-space: nowrap;
   overflow: hidden;
@@ -269,7 +262,7 @@ body {
 
 .VPHomeHero .text {
   font-weight: 600;
-  font-size: clamp(1.05rem, 3vw, 1.8rem);
+  font-size: clamp(1.05rem, 3vw, 1.85rem);
   color: var(--ui-ink);
   white-space: nowrap;
   overflow: hidden;
@@ -278,17 +271,13 @@ body {
 
 .VPHomeHero .tagline {
   font-size: 1rem;
-  max-width: 36rem;
+  max-width: 38rem;
   color: var(--ui-ink-soft);
-}
-
-.VPHomeHero .actions {
-  gap: 0.8rem;
 }
 
 .VPButton {
   border-radius: var(--ui-radius-sm);
-  padding: 0.15rem 1.3rem;
+  padding: 0.2rem 1.35rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   border: 1px solid transparent;
@@ -302,7 +291,7 @@ body {
 }
 
 .VPButton.brand {
-  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-heat));
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-accent));
   border-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -355,10 +344,10 @@ body {
 
 .page-hero {
   display: grid;
-  gap: 2rem;
+  gap: 1.6rem;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   align-items: start;
-  padding: 2.4rem;
+  padding: 2.2rem;
   border-radius: var(--ui-radius-xl);
   background: var(--ui-surface);
   border: 1px solid var(--ui-border);
@@ -371,22 +360,23 @@ body {
 .page-hero::after {
   content: '';
   position: absolute;
-  right: -90px;
-  top: -90px;
-  width: 210px;
-  height: 210px;
+  right: -80px;
+  top: -80px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(31, 111, 235, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(27, 144, 127, 0.2), transparent 70%);
   opacity: 0.6;
 }
 
 .page-hero__content {
   position: relative;
   z-index: 1;
+  min-width: 0;
 }
 
 .page-hero__content h1 {
-  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   margin-bottom: 0.75rem;
   white-space: nowrap;
   overflow: hidden;
@@ -400,8 +390,8 @@ body {
 
 .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--ui-ink-fade);
   margin-bottom: 0.5rem;
@@ -427,7 +417,7 @@ body {
 .home-flow {
   margin: 3.2rem 0;
   display: grid;
-  gap: 1.4rem;
+  gap: 1.2rem;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
@@ -448,7 +438,7 @@ body {
   padding: 2.2rem;
   border-radius: var(--ui-radius-xl);
   border: 1px solid var(--ui-border);
-  background: linear-gradient(130deg, rgba(31, 111, 235, 0.16), rgba(255, 122, 65, 0.18));
+  background: linear-gradient(130deg, rgba(27, 144, 127, 0.16), rgba(240, 139, 62, 0.18));
   box-shadow: var(--ui-shadow-md);
   text-align: center;
 }
@@ -462,6 +452,7 @@ body {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1rem;
+  justify-content: center;
 }
 
 .badge {
@@ -490,7 +481,7 @@ body {
   background: var(--ui-surface);
 }
 
-@keyframes rise {
+@keyframes float-up {
   from {
     opacity: 0;
     transform: translateY(16px);
@@ -502,7 +493,7 @@ body {
 }
 
 .animate-rise {
-  animation: rise 0.7s ease both;
+  animation: float-up 0.7s ease both;
 }
 
 @media (max-width: 960px) {

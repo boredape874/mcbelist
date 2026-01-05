@@ -175,7 +175,7 @@ async function signInWithGoogle() {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 12, 16, 0.55);
+  background: rgba(12, 15, 18, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,18 +185,18 @@ async function signInWithGoogle() {
 
 .modal-content {
   background: var(--ui-surface);
-  padding: 2rem;
+  padding: 2rem 1.8rem;
   border-radius: var(--ui-radius-lg);
   max-width: 420px;
   width: 92vw;
   position: relative;
   box-shadow: var(--ui-shadow-lg);
   border: 1px solid var(--ui-border);
-  animation: rise 0.4s ease;
+  animation: float-up 0.4s ease;
 }
 
 .modal-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
 }
 
 .modal-subtitle {
@@ -210,20 +210,21 @@ async function signInWithGoogle() {
   right: 1rem;
   background: var(--ui-surface-muted);
   border: 1px solid var(--ui-border);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   cursor: pointer;
   color: var(--vp-c-text-2);
   line-height: 1;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.1rem;
+  height: 2.1rem;
   border-radius: var(--ui-radius-sm);
   display: grid;
   place-items: center;
-  transition: color 0.2s, background 0.2s;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
 }
 
 .close-button:hover {
   color: var(--vp-c-text-1);
+  border-color: var(--vp-c-brand);
 }
 
 h2 {
@@ -251,7 +252,7 @@ input {
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   box-sizing: border-box;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input:focus {
@@ -262,19 +263,19 @@ input:focus {
 
 .error-message {
   padding: 0.75rem;
-  background: rgba(224, 86, 77, 0.16);
+  background: var(--vp-c-danger-soft);
   color: var(--vp-c-danger);
   border-radius: var(--ui-radius-md);
   margin-bottom: 1rem;
   font-size: 0.875rem;
-  border: 1px solid rgba(224, 86, 77, 0.3);
+  border: 1px solid rgba(224, 90, 79, 0.3);
 }
 
 .submit-button {
   width: 100%;
   padding: 0.8rem;
-  background: var(--vp-c-brand);
-  color: white;
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-accent));
+  color: #fff;
   border: none;
   border-radius: var(--ui-radius-sm);
   font-size: 1rem;
@@ -334,7 +335,7 @@ input:focus {
   width: 100%;
   padding: 0.8rem;
   background: var(--ui-surface-muted);
-  color: #333;
+  color: var(--vp-c-text-1);
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
   font-size: 1rem;
@@ -354,7 +355,7 @@ input:focus {
 
 .google-button:hover:not(:disabled) {
   border-color: var(--vp-c-brand);
-  color: var(--vp-c-brand);
+  color: var(--vp-c-brand-dark);
 }
 
 .google-button:disabled {
