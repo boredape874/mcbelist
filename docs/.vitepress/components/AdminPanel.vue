@@ -1,27 +1,33 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { getDb } from '../firebase.js'
 import { useAuth } from '../composables/useAuth.js'
 import { isAdmin } from '../constants.js'
 
-const { user } = useAuth()
+const { user, loading: authLoading } = useAuth()
 const pendingCommunities = ref([])
 const approvedCommunities = ref([])
 const loading = ref(true)
 const activeTab = ref('pending')
 
-onMounted(async () => {
-  console.log('현재 사용자:', user.value)
-  console.log('현재 UID:', user.value?.uid)
-  console.log('관리자 여부:', user.value ? isAdmin(user.value.uid) : false)
+// user가 로드되면 실행
+watch([user, authLoading], async ([currentUser, isAuthLoading]) => {
+  console.log('Auth 로딩 상태:', isAuthLoading)
+  console.log('현재 사용자:', currentUser)
+  console.log('현재 UID:', currentUser?.uid)
+  console.log('관리자 여부:', currentUser ? isAdmin(currentUser.uid) : false)
 
-  if (!user.value || !isAdmin(user.value.uid)) {
+  if (isAuthLoading) {
+    return // 아직 로딩 중
+  }
+
+  if (!currentUser || !isAdmin(currentUser.uid)) {
     loading.value = false
     return
   }
 
   await loadCommunities()
-})
+}, { immediate: true })
 
 async function loadCommunities() {
   loading.value = true
