@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, computed, onMounted, watch } from 'vue'
 import { getDb } from '../firebase.js'
 import { useAuth } from '../composables/useAuth.js'
@@ -333,11 +333,11 @@ const isUserAdmin = computed(() => {
 <style scoped>
 .state {
   text-align: center;
-  padding: 2.5rem 2rem;
+  padding: 2.4rem 2rem;
   color: var(--vp-c-text-2);
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface);
   box-shadow: var(--ui-shadow-sm);
 }
 
@@ -358,7 +358,7 @@ const isUserAdmin = computed(() => {
   padding: 1rem 1.3rem;
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface);
   box-shadow: var(--ui-shadow-sm);
 }
 
@@ -382,20 +382,20 @@ const isUserAdmin = computed(() => {
   display: inline-flex;
   gap: 0.5rem;
   padding: 0.35rem;
-  border-radius: 999px;
+  border-radius: var(--ui-radius-sm);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-soft);
+  background: var(--ui-surface-2);
 }
 
 .tab {
-  padding: 0.5rem 1.2rem;
+  padding: 0.45rem 1.1rem;
   border: none;
   background: transparent;
   color: var(--vp-c-text-2);
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 600;
-  border-radius: 999px;
+  border-radius: var(--ui-radius-sm);
   transition: all 0.3s;
 }
 
@@ -432,10 +432,10 @@ const isUserAdmin = computed(() => {
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-lg);
   overflow: hidden;
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface);
   box-shadow: var(--ui-shadow-sm);
   transition: transform 0.2s, box-shadow 0.2s;
-  animation: rise-in 0.6s ease both;
+  animation: slide-up 0.6s ease both;
   animation-delay: calc(var(--stagger, 0) * 80ms);
 }
 
@@ -473,15 +473,20 @@ const isUserAdmin = computed(() => {
 .admin-card h3 {
   margin: 0;
   color: var(--vp-c-text-1);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .description {
   color: var(--vp-c-text-2);
   margin: 0;
   line-height: 1.6;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .meta {
@@ -492,10 +497,10 @@ const isUserAdmin = computed(() => {
 
 .category {
   display: inline-flex;
-  padding: 0.3rem 0.75rem;
-  background: rgba(63, 143, 92, 0.16);
+  padding: 0.3rem 0.6rem;
+  background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-dark);
-  border-radius: 999px;
+  border-radius: var(--ui-radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
 }
@@ -509,9 +514,9 @@ const isUserAdmin = computed(() => {
 .tag {
   display: inline-flex;
   padding: 0.25rem 0.6rem;
-  background: var(--vp-c-bg);
+  background: var(--ui-surface-2);
   border: 1px solid var(--ui-border);
-  border-radius: 999px;
+  border-radius: var(--ui-radius-sm);
   font-size: 0.72rem;
   color: var(--vp-c-text-2);
 }
@@ -535,8 +540,8 @@ const isUserAdmin = computed(() => {
 
 .order-control {
   padding: 0.75rem;
-  background: var(--vp-c-bg);
-  border-radius: 12px;
+  background: var(--ui-surface-2);
+  border-radius: var(--ui-radius-md);
   border: 1px solid var(--ui-border);
 }
 
@@ -551,8 +556,8 @@ const isUserAdmin = computed(() => {
 .order-input {
   width: 90px;
   padding: 0.4rem 0.5rem;
-  border: 1px solid var(--ui-border);
-  border-radius: 10px;
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-sm);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-size: 0.875rem;
@@ -568,9 +573,9 @@ const isUserAdmin = computed(() => {
 }
 
 .btn {
-  padding: 0.4rem 1rem;
+  padding: 0.35rem 0.9rem;
   border: none;
-  border-radius: 999px;
+  border-radius: var(--ui-radius-sm);
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 600;
@@ -604,3 +609,4 @@ const isUserAdmin = computed(() => {
   background: #dc2626;
 }
 </style>
+

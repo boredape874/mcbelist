@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="user-menu">
     <div v-if="loading" class="loading">...</div>
 
@@ -43,7 +43,7 @@ async function handleLogout() {
 .user-menu {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .loading {
@@ -54,11 +54,10 @@ async function handleLogout() {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--ui-radius-sm);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-soft);
-  box-shadow: var(--ui-shadow-sm);
+  background: var(--ui-surface-2);
 }
 
 .user-details {
@@ -67,7 +66,7 @@ async function handleLogout() {
 }
 
 .user-email {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--vp-c-text-1);
 }
@@ -81,8 +80,8 @@ async function handleLogout() {
 
 .login-button,
 .logout-button {
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--ui-radius-sm);
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
@@ -91,7 +90,7 @@ async function handleLogout() {
 }
 
 .login-button {
-  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-ember));
+  background: var(--vp-c-brand);
   color: white;
   border-color: transparent;
 }
@@ -111,3 +110,4 @@ async function handleLogout() {
   border-color: var(--vp-c-brand);
 }
 </style>
+

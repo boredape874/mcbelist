@@ -292,11 +292,11 @@ async function submitCommunity() {
 <style scoped>
 .state {
   text-align: center;
-  padding: 2.5rem;
+  padding: 2.3rem;
   color: var(--vp-c-text-2);
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface);
   box-shadow: var(--ui-shadow-sm);
 }
 
@@ -309,7 +309,7 @@ async function submitCommunity() {
 .auth-card {
   text-align: center;
   padding: 2rem;
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface);
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
   box-shadow: var(--ui-shadow-sm);
@@ -322,11 +322,11 @@ async function submitCommunity() {
 }
 
 .login-button {
-  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-ember));
+  background: var(--vp-c-brand);
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
+  padding: 0.75rem 1.4rem;
+  border-radius: var(--ui-radius-sm);
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
@@ -354,7 +354,7 @@ async function submitCommunity() {
   padding: 2rem;
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface);
   box-shadow: var(--ui-shadow-md);
 }
 
@@ -380,8 +380,8 @@ async function submitCommunity() {
 .form-group select {
   width: 100%;
   padding: 0.8rem 0.9rem;
-  border: 1px solid var(--ui-border);
-  border-radius: 12px;
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-md);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   font-size: 1rem;
@@ -409,10 +409,10 @@ async function submitCommunity() {
 }
 
 .tag-button {
-  padding: 0.45rem 1rem;
+  padding: 0.4rem 0.9rem;
   border: 1px solid var(--ui-border);
-  border-radius: 999px;
-  background: var(--ui-surface-soft);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface-2);
   color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.3s;
@@ -423,6 +423,7 @@ async function submitCommunity() {
 .tag-button:hover {
   border-color: var(--vp-c-brand);
   color: var(--vp-c-brand);
+  background: var(--vp-c-brand-soft);
 }
 
 .tag-button.selected {
@@ -443,7 +444,7 @@ async function submitCommunity() {
 
 .image-preview img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: var(--ui-radius-md);
   border: 1px solid var(--ui-border);
   box-shadow: var(--ui-shadow-sm);
 }
@@ -472,30 +473,30 @@ async function submitCommunity() {
 
 .message {
   padding: 0.85rem 1rem;
-  border-radius: 12px;
+  border-radius: var(--ui-radius-md);
   margin-bottom: 1rem;
   border: 1px solid transparent;
 }
 
 .message.success {
-  background: rgba(63, 143, 92, 0.16);
+  background: rgba(31, 156, 138, 0.16);
   color: var(--vp-c-brand-dark);
-  border-color: rgba(63, 143, 92, 0.3);
+  border-color: rgba(31, 156, 138, 0.3);
 }
 
 .message.error {
-  background: rgba(196, 73, 47, 0.16);
+  background: rgba(222, 76, 63, 0.16);
   color: var(--vp-c-danger);
-  border-color: rgba(196, 73, 47, 0.3);
+  border-color: rgba(222, 76, 63, 0.3);
 }
 
 .submit-button {
   width: 100%;
-  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-ember));
+  background: var(--vp-c-brand);
   color: white;
   border: none;
   padding: 0.85rem 1.5rem;
-  border-radius: 999px;
+  border-radius: var(--ui-radius-sm);
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
@@ -546,3 +547,4 @@ async function submitCommunity() {
   }
 }
 </style>
+

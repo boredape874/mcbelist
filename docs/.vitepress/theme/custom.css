@@ -1,106 +1,94 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;600;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --vp-font-family-base: 'IBM Plex Sans KR', sans-serif;
+  --vp-font-family-base: 'Gothic A1', sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', monospace;
-  --vp-font-family-title: 'Hahmlet', 'IBM Plex Sans KR', serif;
+  --vp-font-family-title: 'Black Han Sans', 'Gothic A1', sans-serif;
 
-  --ui-sand: #f4efe5;
-  --ui-sand-soft: #fbf6ee;
-  --ui-earth: #2d2117;
-  --ui-earth-soft: #4d3d2f;
-  --ui-forest: #3e8f5b;
-  --ui-forest-bright: #5fb77c;
-  --ui-ember: #e3b05f;
-  --ui-sky: #5aa9b4;
-  --ui-border: rgba(45, 33, 23, 0.12);
-  --ui-border-strong: rgba(45, 33, 23, 0.2);
-  --ui-surface: rgba(255, 255, 255, 0.78);
-  --ui-surface-strong: rgba(255, 255, 255, 0.9);
-  --ui-surface-soft: rgba(255, 255, 255, 0.65);
+  --ui-bg: #f6f7fb;
+  --ui-bg-soft: #eef2f6;
+  --ui-surface: #ffffff;
+  --ui-surface-2: #f1f4f8;
+  --ui-ink: #1b1f26;
+  --ui-ink-soft: #4f5561;
+  --ui-ink-fade: #7a8291;
+  --ui-accent: #1f9c8a;
+  --ui-accent-strong: #177a6c;
+  --ui-accent-soft: rgba(31, 156, 138, 0.12);
+  --ui-amber: #f3b44d;
+  --ui-border: rgba(27, 31, 38, 0.12);
+  --ui-border-strong: rgba(27, 31, 38, 0.2);
+  --ui-shadow-sm: 0 8px 18px rgba(15, 23, 35, 0.08);
+  --ui-shadow-md: 0 18px 36px rgba(15, 23, 35, 0.12);
+  --ui-shadow-lg: 0 30px 60px rgba(15, 23, 35, 0.18);
+  --ui-radius-xl: 22px;
+  --ui-radius-lg: 18px;
+  --ui-radius-md: 12px;
+  --ui-radius-sm: 8px;
 
-  --vp-c-bg: var(--ui-sand);
-  --vp-c-bg-soft: var(--ui-sand-soft);
-  --vp-c-bg-mute: #efe6da;
-  --vp-c-bg-elv: #ffffff;
-  --vp-c-text-1: #24180f;
-  --vp-c-text-2: #4d3d2f;
-  --vp-c-text-3: #7a6755;
+  --vp-c-bg: var(--ui-bg);
+  --vp-c-bg-soft: var(--ui-bg-soft);
+  --vp-c-bg-mute: var(--ui-surface-2);
+  --vp-c-bg-elv: var(--ui-surface);
+  --vp-c-text-1: var(--ui-ink);
+  --vp-c-text-2: var(--ui-ink-soft);
+  --vp-c-text-3: var(--ui-ink-fade);
   --vp-c-divider: var(--ui-border);
 
-  --vp-c-brand: var(--ui-forest);
-  --vp-c-brand-light: #58a86f;
-  --vp-c-brand-lighter: #76c78f;
-  --vp-c-brand-dark: #2f6d45;
-  --vp-c-brand-darker: #255738;
-  --vp-c-brand-dimm: rgba(63, 143, 92, 0.14);
-  --vp-c-brand-soft: rgba(63, 143, 92, 0.12);
+  --vp-c-brand: var(--ui-accent);
+  --vp-c-brand-light: #28b59e;
+  --vp-c-brand-lighter: #4ccbb6;
+  --vp-c-brand-dark: var(--ui-accent-strong);
+  --vp-c-brand-darker: #0f5e53;
+  --vp-c-brand-dimm: var(--ui-accent-soft);
+  --vp-c-brand-soft: var(--ui-accent-soft);
 
-  --vp-c-danger: #c4492f;
-  --vp-c-danger-soft: rgba(196, 73, 47, 0.12);
-
-  --ui-shadow-sm: 0 6px 16px rgba(41, 29, 16, 0.12);
-  --ui-shadow-md: 0 16px 36px rgba(41, 29, 16, 0.16);
-  --ui-shadow-lg: 0 28px 60px rgba(41, 29, 16, 0.2);
-  --ui-radius-xl: 24px;
-  --ui-radius-lg: 18px;
-  --ui-radius-md: 14px;
-  --ui-radius-sm: 10px;
+  --vp-c-danger: #de4c3f;
+  --vp-c-danger-soft: rgba(222, 76, 63, 0.12);
 }
 
 .dark {
-  --vp-c-bg: #17130f;
-  --vp-c-bg-soft: #201a15;
-  --vp-c-bg-mute: #262019;
-  --vp-c-bg-elv: #1b1611;
-  --vp-c-text-1: #f5ecdf;
-  --vp-c-text-2: #cdbba6;
-  --vp-c-text-3: #9c896f;
-  --vp-c-divider: rgba(245, 236, 223, 0.12);
-
-  --vp-c-brand: #6ed18a;
-  --vp-c-brand-light: #86e3a0;
-  --vp-c-brand-lighter: #9ff1b7;
-  --vp-c-brand-dark: #4cab68;
-  --vp-c-brand-darker: #3a844f;
-  --vp-c-brand-dimm: rgba(110, 209, 138, 0.16);
-  --vp-c-brand-soft: rgba(110, 209, 138, 0.15);
-
-  --vp-c-danger: #ff7a5e;
-  --vp-c-danger-soft: rgba(255, 122, 94, 0.14);
-
-  --ui-border: rgba(245, 236, 223, 0.12);
-  --ui-border-strong: rgba(245, 236, 223, 0.18);
-  --ui-surface: rgba(26, 22, 17, 0.88);
-  --ui-surface-strong: rgba(30, 24, 18, 0.92);
-  --ui-surface-soft: rgba(26, 22, 17, 0.75);
-  --ui-shadow-sm: 0 8px 22px rgba(10, 8, 6, 0.45);
-  --ui-shadow-md: 0 18px 36px rgba(8, 6, 4, 0.55);
-  --ui-shadow-lg: 0 26px 62px rgba(8, 6, 4, 0.6);
+  --ui-bg: #0e1116;
+  --ui-bg-soft: #131820;
+  --ui-surface: #171d26;
+  --ui-surface-2: #1f2630;
+  --ui-ink: #f0f2f5;
+  --ui-ink-soft: #c3c9d2;
+  --ui-ink-fade: #8f98a7;
+  --ui-accent: #2bc4a3;
+  --ui-accent-strong: #1b907c;
+  --ui-accent-soft: rgba(43, 196, 163, 0.16);
+  --ui-amber: #f3c06b;
+  --ui-border: rgba(240, 242, 245, 0.12);
+  --ui-border-strong: rgba(240, 242, 245, 0.2);
+  --ui-shadow-sm: 0 12px 24px rgba(4, 6, 10, 0.55);
+  --ui-shadow-md: 0 22px 40px rgba(4, 6, 10, 0.6);
+  --ui-shadow-lg: 0 36px 64px rgba(4, 6, 10, 0.65);
 }
 
 body {
   font-family: var(--vp-font-family-base);
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
+  background: var(--ui-bg);
+  color: var(--ui-ink);
 }
 
 #app,
 .VPApp {
   min-height: 100%;
+  background-color: var(--ui-bg);
   background-image:
-    radial-gradient(circle at 12% 12%, rgba(227, 176, 95, 0.22), transparent 45%),
-    radial-gradient(circle at 85% 10%, rgba(90, 169, 180, 0.18), transparent 40%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.7), rgba(244, 239, 229, 0.95));
+    radial-gradient(circle at 12% 8%, rgba(31, 156, 138, 0.16), transparent 38%),
+    radial-gradient(circle at 85% 10%, rgba(243, 180, 77, 0.18), transparent 40%),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.8), rgba(246, 247, 251, 0.98));
   background-attachment: fixed;
 }
 
 .dark #app,
 .dark .VPApp {
   background-image:
-    radial-gradient(circle at 12% 12%, rgba(110, 209, 138, 0.2), transparent 45%),
-    radial-gradient(circle at 85% 10%, rgba(90, 169, 180, 0.22), transparent 40%),
-    linear-gradient(160deg, rgba(28, 22, 17, 0.9), rgba(20, 16, 12, 0.98));
+    radial-gradient(circle at 12% 8%, rgba(43, 196, 163, 0.14), transparent 40%),
+    radial-gradient(circle at 85% 10%, rgba(243, 192, 107, 0.12), transparent 40%),
+    linear-gradient(140deg, rgba(14, 17, 22, 0.95), rgba(10, 12, 16, 0.98));
 }
 
 #app::before,
@@ -110,8 +98,8 @@ body {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(transparent 23px, rgba(45, 33, 23, 0.04) 24px),
-    linear-gradient(90deg, transparent 23px, rgba(45, 33, 23, 0.04) 24px);
+    linear-gradient(transparent 23px, rgba(27, 31, 38, 0.035) 24px),
+    linear-gradient(90deg, transparent 23px, rgba(27, 31, 38, 0.035) 24px);
   background-size: 24px 24px;
   opacity: 0.5;
   z-index: 0;
@@ -120,83 +108,111 @@ body {
 .dark #app::before,
 .dark .VPApp::before {
   background-image:
-    linear-gradient(transparent 23px, rgba(245, 236, 223, 0.06) 24px),
-    linear-gradient(90deg, transparent 23px, rgba(245, 236, 223, 0.06) 24px);
-  opacity: 0.35;
+    linear-gradient(transparent 23px, rgba(240, 242, 245, 0.06) 24px),
+    linear-gradient(90deg, transparent 23px, rgba(240, 242, 245, 0.06) 24px);
+  opacity: 0.3;
+}
+
+.VPNav {
+  position: static;
+  border-bottom: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  z-index: 5;
+  top: auto;
+  left: auto;
+  right: auto;
+  overflow: visible;
 }
 
 .VPNavBar {
-  border-bottom: 1px solid var(--ui-border);
-  background: var(--ui-surface-strong);
-  backdrop-filter: blur(14px);
+  position: static;
+  height: auto;
+  min-height: 0;
+  padding: 0.8rem 0;
+  background: transparent;
+  backdrop-filter: none;
+  overflow: visible;
 }
 
-.dark .VPNavBar {
-  background: var(--ui-surface-strong);
+.VPNavBar .wrapper,
+.VPNavBar .container,
+.VPNavBar .content,
+.VPNavBar .content-body {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
 }
 
-@media (min-width: 960px) {
-  .VPNav {
-    position: static;
-  }
+.VPNavBar .container {
+  flex-wrap: wrap;
+  row-gap: 0.6rem;
+  align-items: center;
+}
 
-  .VPNavBar {
-    position: static;
-    height: auto;
-    padding: 0.75rem 0;
-  }
+.VPNavBar .content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
 
-  .VPNavBar .wrapper,
-  .VPNavBar .container,
-  .VPNavBar .content,
-  .VPNavBar .content-body {
-    height: auto;
-    min-height: 0;
-  }
-
-  .VPNavBar .content,
-  .VPNavBar .content-body {
-    flex-wrap: wrap;
-    row-gap: 0.6rem;
-  }
-
-  .VPNavBarMenu {
-    flex-wrap: wrap;
-    row-gap: 0.4rem;
-  }
-
-  .VPNavBarMenu .link {
-    white-space: nowrap;
-  }
-
-  .user-menu {
-    margin-left: auto;
-  }
-
-  .VPContent {
-    padding-top: 0 !important;
-  }
+.VPNavBar .content-body {
+  flex-wrap: wrap;
+  row-gap: 0.6rem;
+  column-gap: 0.75rem;
+  align-items: center;
+  min-width: 0;
 }
 
 .VPNavBarTitle .title {
   font-family: var(--vp-font-family-title);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  font-size: 1.1rem;
 }
 
-.VPNavBarMenuLink,
+.VPNavBarMenu {
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-wrap: nowrap;
+  gap: 0.4rem;
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-width: none;
+}
+
+.VPNavBarMenu::-webkit-scrollbar {
+  height: 0;
+}
+
+.user-menu {
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
+.VPNavBarMenuLink {
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--ui-radius-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.VPNavBarMenuLink.active {
+  background: var(--vp-c-brand);
+  color: #ffffff;
+}
+
+.VPNavBarMenuLink:hover {
+  color: var(--ui-ink);
+  background: var(--ui-surface-2);
+}
+
 .VPNavBarMenuGroup .text {
   font-weight: 600;
-  letter-spacing: 0.02em;
 }
 
 .VPSidebar {
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface);
   border-right: 1px solid var(--ui-border);
-}
-
-.dark .VPSidebar {
-  background: var(--ui-surface-strong);
 }
 
 .VPSidebar,
@@ -214,56 +230,66 @@ body {
   line-height: 1.4;
 }
 
+.VPContent {
+  padding-top: 0 !important;
+  padding-bottom: 6rem;
+  position: relative;
+  z-index: 1;
+}
+
 .VPHome {
   margin-bottom: 120px;
 }
 
 .VPHomeHero {
   position: relative;
-  padding: 4rem 0 2.5rem;
+  padding: 3.5rem 0 2.5rem;
 }
 
 .VPHomeHero::before {
   content: '';
   position: absolute;
-  inset: 12% 0 auto 0;
-  height: 240px;
+  inset: 18% 0 auto 0;
+  height: 210px;
   border-radius: var(--ui-radius-xl);
-  background: linear-gradient(120deg, rgba(63, 143, 92, 0.18), rgba(90, 169, 180, 0.18));
-  filter: blur(12px);
-  opacity: 0.7;
+  background: linear-gradient(120deg, rgba(31, 156, 138, 0.2), rgba(243, 180, 77, 0.24));
+  filter: blur(16px);
+  opacity: 0.8;
   z-index: -1;
 }
 
 .VPHomeHero .name {
   font-family: var(--vp-font-family-title);
-  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
   letter-spacing: 0.04em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
 .VPHomeHero .text {
   font-weight: 600;
-  font-size: clamp(1.3rem, 3vw, 2.1rem);
-  color: var(--vp-c-text-1);
+  font-size: clamp(1.1rem, 3vw, 1.9rem);
+  color: var(--ui-ink);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .VPHomeHero .tagline {
-  font-size: 1.05rem;
+  font-size: 1rem;
   max-width: 36rem;
-  color: var(--vp-c-text-2);
+  color: var(--ui-ink-soft);
 }
 
 .VPHomeHero .actions {
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .VPButton {
-  border-radius: 999px;
-  padding: 0.2rem 1.4rem;
+  border-radius: var(--ui-radius-sm);
+  padding: 0.15rem 1.3rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   border: 1px solid transparent;
   box-shadow: var(--ui-shadow-sm);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -275,14 +301,14 @@ body {
 }
 
 .VPButton.brand {
-  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-ember));
-  border-color: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-amber));
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .VPButton.alt {
   background: transparent;
-  border-color: var(--vp-c-brand);
-  color: var(--vp-c-brand);
+  border-color: var(--vp-c-text-1);
+  color: var(--vp-c-text-1);
 }
 
 .VPHomeFeatures {
@@ -290,7 +316,7 @@ body {
 }
 
 .VPHomeFeatures .items {
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .VPFeature {
@@ -298,13 +324,8 @@ body {
   border: 1px solid var(--ui-border);
   background: var(--ui-surface);
   box-shadow: var(--ui-shadow-sm);
-  backdrop-filter: blur(4px);
-  padding: 1.75rem;
+  padding: 1.6rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.dark .VPFeature {
-  background: var(--ui-surface);
 }
 
 .VPFeature:hover {
@@ -317,15 +338,10 @@ body {
   height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 12px;
+  border-radius: var(--ui-radius-sm);
   font-weight: 700;
-  background: rgba(63, 143, 92, 0.16);
-  color: var(--vp-c-brand-dark);
-}
-
-.VPDoc {
-  position: relative;
-  z-index: 1;
+  background: var(--ui-accent-soft);
+  color: var(--ui-accent-strong);
 }
 
 .VPDoc h1,
@@ -333,11 +349,7 @@ body {
 .VPDoc h3,
 .VPDoc h4 {
   font-family: var(--vp-font-family-title);
-  letter-spacing: 0.02em;
-}
-
-.VPContent {
-  padding-bottom: 6rem;
+  letter-spacing: 0.01em;
 }
 
 .page-hero {
@@ -347,7 +359,7 @@ body {
   align-items: start;
   padding: 2.5rem;
   border-radius: var(--ui-radius-xl);
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface);
   border: 1px solid var(--ui-border);
   box-shadow: var(--ui-shadow-md);
   margin: 2rem 0 2.5rem;
@@ -355,20 +367,16 @@ body {
   overflow: hidden;
 }
 
-.dark .page-hero {
-  background: var(--ui-surface-strong);
-}
-
 .page-hero::after {
   content: '';
   position: absolute;
-  right: -80px;
-  top: -80px;
-  width: 200px;
-  height: 200px;
+  right: -90px;
+  top: -90px;
+  width: 210px;
+  height: 210px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(227, 176, 95, 0.5), transparent 70%);
-  opacity: 0.5;
+  background: radial-gradient(circle, rgba(31, 156, 138, 0.2), transparent 70%);
+  opacity: 0.6;
 }
 
 .page-hero__content {
@@ -377,22 +385,24 @@ body {
 }
 
 .page-hero__content h1 {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   margin-bottom: 0.75rem;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .page-hero__content p {
-  color: var(--vp-c-text-2);
+  color: var(--ui-ink-soft);
   font-size: 1rem;
 }
 
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--vp-c-text-3);
+  color: var(--ui-ink-fade);
   margin-bottom: 0.5rem;
 }
 
@@ -402,15 +412,11 @@ body {
 }
 
 .page-hero__card {
-  padding: 1.25rem 1.4rem;
+  padding: 1.2rem 1.3rem;
   border-radius: var(--ui-radius-md);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface);
+  background: var(--ui-surface-2);
   box-shadow: var(--ui-shadow-sm);
-}
-
-.dark .page-hero__card {
-  background: var(--ui-surface);
 }
 
 .page-section {
@@ -418,14 +424,14 @@ body {
 }
 
 .home-flow {
-  margin: 3.5rem 0;
+  margin: 3.2rem 0;
   display: grid;
-  gap: 1.5rem;
+  gap: 1.4rem;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .home-flow__card {
-  padding: 1.5rem;
+  padding: 1.4rem;
   border-radius: var(--ui-radius-lg);
   border: 1px solid var(--ui-border);
   background: var(--ui-surface);
@@ -438,10 +444,10 @@ body {
 
 .home-cta {
   margin: 4rem 0 1rem;
-  padding: 2.5rem;
+  padding: 2.3rem;
   border-radius: var(--ui-radius-xl);
   border: 1px solid var(--ui-border);
-  background: linear-gradient(130deg, rgba(63, 143, 92, 0.18), rgba(227, 176, 95, 0.22));
+  background: linear-gradient(130deg, rgba(31, 156, 138, 0.18), rgba(243, 180, 77, 0.2));
   box-shadow: var(--ui-shadow-md);
   text-align: center;
 }
@@ -458,55 +464,12 @@ body {
 }
 
 .badge {
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  background: rgba(63, 143, 92, 0.12);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface-2);
   border: 1px solid var(--ui-border);
   font-size: 0.8rem;
-  color: var(--vp-c-text-2);
-}
-
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes soft-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(227, 176, 95, 0.2);
-  }
-}
-
-.animate-rise {
-  animation: rise-in 0.7s ease both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-}
-
-@media (max-width: 960px) {
-  .VPNavBar {
-    backdrop-filter: none;
-  }
-
-  .page-hero {
-    padding: 2rem;
-  }
+  color: var(--ui-ink-soft);
 }
 
 .info-grid {
@@ -518,7 +481,7 @@ body {
 .info-list {
   margin: 0;
   padding-left: 1.2rem;
-  color: var(--vp-c-text-2);
+  color: var(--ui-ink-soft);
 }
 
 .VPFooter {
@@ -526,7 +489,49 @@ body {
   background: var(--ui-surface);
 }
 
-.dark .VPFooter {
-  background: var(--ui-surface);
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+.animate-rise {
+  animation: slide-up 0.7s ease both;
+}
+
+@media (max-width: 960px) {
+  .VPNavBar {
+    padding: 0.6rem 0;
+  }
+
+  .VPHomeHero {
+    padding: 2.8rem 0 2rem;
+  }
+
+  .page-hero {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .VPHomeHero .text {
+    font-size: 1.05rem;
+  }
+
+  .page-hero__content h1 {
+    font-size: 1.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

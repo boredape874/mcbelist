@@ -175,7 +175,7 @@ async function signInWithGoogle() {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(14, 10, 8, 0.6);
+  background: rgba(10, 12, 16, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,7 +184,7 @@ async function signInWithGoogle() {
 }
 
 .modal-content {
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface);
   padding: 2rem;
   border-radius: var(--ui-radius-lg);
   max-width: 420px;
@@ -192,11 +192,7 @@ async function signInWithGoogle() {
   position: relative;
   box-shadow: var(--ui-shadow-lg);
   border: 1px solid var(--ui-border);
-  animation: rise-in 0.4s ease;
-}
-
-.dark .modal-content {
-  background: var(--ui-surface-strong);
+  animation: slide-up 0.4s ease;
 }
 
 .modal-header {
@@ -212,22 +208,22 @@ async function signInWithGoogle() {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(0, 0, 0, 0.08);
-  border: none;
-  font-size: 1.6rem;
+  background: var(--ui-surface-2);
+  border: 1px solid var(--ui-border);
+  font-size: 1.4rem;
   cursor: pointer;
   color: var(--vp-c-text-2);
   line-height: 1;
   width: 2.2rem;
   height: 2.2rem;
-  border-radius: 50%;
+  border-radius: var(--ui-radius-sm);
   display: grid;
   place-items: center;
   transition: background 0.2s, color 0.2s;
 }
 
 .close-button:hover {
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--ui-surface-2);
   color: var(--vp-c-text-1);
 }
 
@@ -250,8 +246,8 @@ label {
 input {
   width: 100%;
   padding: 0.75rem 0.85rem;
-  border: 1px solid var(--ui-border);
-  border-radius: 12px;
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-md);
   font-size: 1rem;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
@@ -267,21 +263,21 @@ input:focus {
 
 .error-message {
   padding: 0.75rem;
-  background: rgba(196, 73, 47, 0.16);
+  background: rgba(222, 76, 63, 0.16);
   color: var(--vp-c-danger);
-  border-radius: 10px;
+  border-radius: var(--ui-radius-md);
   margin-bottom: 1rem;
   font-size: 0.875rem;
-  border: 1px solid rgba(196, 73, 47, 0.3);
+  border: 1px solid rgba(222, 76, 63, 0.3);
 }
 
 .submit-button {
   width: 100%;
   padding: 0.8rem;
-  background: linear-gradient(120deg, var(--vp-c-brand), var(--ui-ember));
+  background: var(--vp-c-brand);
   color: white;
   border: none;
-  border-radius: 999px;
+  border-radius: var(--ui-radius-sm);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -338,10 +334,10 @@ input:focus {
 .google-button {
   width: 100%;
   padding: 0.8rem;
-  background: var(--ui-surface-strong);
+  background: var(--ui-surface-2);
   color: #333;
   border: 1px solid var(--ui-border);
-  border-radius: 999px;
+  border-radius: var(--ui-radius-sm);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -367,3 +363,4 @@ input:focus {
   cursor: not-allowed;
 }
 </style>
+
