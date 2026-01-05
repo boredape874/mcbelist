@@ -435,7 +435,7 @@ const isUserAdmin = computed(() => {
   background: var(--ui-surface);
   box-shadow: var(--ui-shadow-sm);
   transition: transform 0.2s, box-shadow 0.2s;
-  animation: slide-up 0.6s ease both;
+  animation: rise 0.6s ease both;
   animation-delay: calc(var(--stagger, 0) * 80ms);
 }
 
@@ -609,4 +609,5 @@ const isUserAdmin = computed(() => {
   background: #dc2626;
 }
 </style>
+
 

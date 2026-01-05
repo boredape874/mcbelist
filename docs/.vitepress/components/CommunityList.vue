@@ -396,7 +396,7 @@ async function toggleDislike(community) {
   display: flex;
   flex-direction: column;
   position: relative;
-  animation: slide-up 0.6s ease both;
+  animation: rise 0.6s ease both;
   animation-delay: calc(var(--stagger, 0) * 80ms);
 }
 
@@ -498,7 +498,7 @@ async function toggleDislike(community) {
   display: inline-flex;
   padding: 0.25rem 0.6rem;
   border-radius: var(--ui-radius-sm);
-  background: rgba(31, 156, 138, 0.12);
+  background: var(--vp-c-brand-soft);
   color: var(--vp-c-text-2);
   font-size: 0.72rem;
   font-weight: 600;
@@ -577,4 +577,5 @@ async function toggleDislike(community) {
   }
 }
 </style>
+
 

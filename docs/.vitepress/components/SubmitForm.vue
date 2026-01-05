@@ -479,15 +479,15 @@ async function submitCommunity() {
 }
 
 .message.success {
-  background: rgba(31, 156, 138, 0.16);
+  background: rgba(37, 99, 235, 0.12);
   color: var(--vp-c-brand-dark);
-  border-color: rgba(31, 156, 138, 0.3);
+  border-color: rgba(37, 99, 235, 0.24);
 }
 
 .message.error {
-  background: rgba(222, 76, 63, 0.16);
+  background: rgba(224, 86, 77, 0.16);
   color: var(--vp-c-danger);
-  border-color: rgba(222, 76, 63, 0.3);
+  border-color: rgba(224, 86, 77, 0.3);
 }
 
 .submit-button {
@@ -547,4 +547,5 @@ async function submitCommunity() {
   }
 }
 </style>
+
 

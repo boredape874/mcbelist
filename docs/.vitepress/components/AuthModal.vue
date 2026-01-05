@@ -192,7 +192,7 @@ async function signInWithGoogle() {
   position: relative;
   box-shadow: var(--ui-shadow-lg);
   border: 1px solid var(--ui-border);
-  animation: slide-up 0.4s ease;
+  animation: rise 0.4s ease;
 }
 
 .modal-header {
@@ -223,7 +223,6 @@ async function signInWithGoogle() {
 }
 
 .close-button:hover {
-  background: var(--ui-surface-2);
   color: var(--vp-c-text-1);
 }
 
@@ -263,12 +262,12 @@ input:focus {
 
 .error-message {
   padding: 0.75rem;
-  background: rgba(222, 76, 63, 0.16);
+  background: rgba(224, 86, 77, 0.16);
   color: var(--vp-c-danger);
   border-radius: var(--ui-radius-md);
   margin-bottom: 1rem;
   font-size: 0.875rem;
-  border: 1px solid rgba(222, 76, 63, 0.3);
+  border: 1px solid rgba(224, 86, 77, 0.3);
 }
 
 .submit-button {
@@ -363,4 +362,5 @@ input:focus {
   cursor: not-allowed;
 }
 </style>
+
 

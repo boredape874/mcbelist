@@ -1,28 +1,28 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --vp-font-family-base: 'Gothic A1', sans-serif;
+  --vp-font-family-base: 'Gowun Dodum', sans-serif;
   --vp-font-family-mono: 'JetBrains Mono', monospace;
-  --vp-font-family-title: 'Black Han Sans', 'Gothic A1', sans-serif;
+  --vp-font-family-title: 'Gowun Batang', serif;
 
-  --ui-bg: #f6f7fb;
-  --ui-bg-soft: #eef2f6;
+  --ui-bg: #f4f6f9;
+  --ui-bg-soft: #edf1f7;
   --ui-surface: #ffffff;
-  --ui-surface-2: #f1f4f8;
-  --ui-ink: #1b1f26;
-  --ui-ink-soft: #4f5561;
-  --ui-ink-fade: #7a8291;
-  --ui-accent: #1f9c8a;
-  --ui-accent-strong: #177a6c;
-  --ui-accent-soft: rgba(31, 156, 138, 0.12);
-  --ui-amber: #f3b44d;
-  --ui-border: rgba(27, 31, 38, 0.12);
-  --ui-border-strong: rgba(27, 31, 38, 0.2);
-  --ui-shadow-sm: 0 8px 18px rgba(15, 23, 35, 0.08);
-  --ui-shadow-md: 0 18px 36px rgba(15, 23, 35, 0.12);
-  --ui-shadow-lg: 0 30px 60px rgba(15, 23, 35, 0.18);
-  --ui-radius-xl: 22px;
-  --ui-radius-lg: 18px;
+  --ui-surface-2: #f1f4f9;
+  --ui-ink: #101418;
+  --ui-ink-soft: #4b5563;
+  --ui-ink-fade: #7a8797;
+  --ui-brand: #2563eb;
+  --ui-brand-dark: #1d4ed8;
+  --ui-brand-soft: rgba(37, 99, 235, 0.14);
+  --ui-amber: #ff8f3d;
+  --ui-border: rgba(16, 20, 24, 0.12);
+  --ui-border-strong: rgba(16, 20, 24, 0.2);
+  --ui-shadow-sm: 0 10px 18px rgba(16, 20, 24, 0.08);
+  --ui-shadow-md: 0 22px 36px rgba(16, 20, 24, 0.12);
+  --ui-shadow-lg: 0 38px 64px rgba(16, 20, 24, 0.16);
+  --ui-radius-xl: 20px;
+  --ui-radius-lg: 16px;
   --ui-radius-md: 12px;
   --ui-radius-sm: 8px;
 
@@ -35,35 +35,35 @@
   --vp-c-text-3: var(--ui-ink-fade);
   --vp-c-divider: var(--ui-border);
 
-  --vp-c-brand: var(--ui-accent);
-  --vp-c-brand-light: #28b59e;
-  --vp-c-brand-lighter: #4ccbb6;
-  --vp-c-brand-dark: var(--ui-accent-strong);
-  --vp-c-brand-darker: #0f5e53;
-  --vp-c-brand-dimm: var(--ui-accent-soft);
-  --vp-c-brand-soft: var(--ui-accent-soft);
+  --vp-c-brand: var(--ui-brand);
+  --vp-c-brand-light: #3b82f6;
+  --vp-c-brand-lighter: #60a5fa;
+  --vp-c-brand-dark: var(--ui-brand-dark);
+  --vp-c-brand-darker: #1e3a8a;
+  --vp-c-brand-dimm: rgba(37, 99, 235, 0.12);
+  --vp-c-brand-soft: var(--ui-brand-soft);
 
-  --vp-c-danger: #de4c3f;
-  --vp-c-danger-soft: rgba(222, 76, 63, 0.12);
+  --vp-c-danger: #e0564d;
+  --vp-c-danger-soft: rgba(224, 86, 77, 0.12);
 }
 
 .dark {
-  --ui-bg: #0e1116;
-  --ui-bg-soft: #131820;
-  --ui-surface: #171d26;
-  --ui-surface-2: #1f2630;
-  --ui-ink: #f0f2f5;
-  --ui-ink-soft: #c3c9d2;
-  --ui-ink-fade: #8f98a7;
-  --ui-accent: #2bc4a3;
-  --ui-accent-strong: #1b907c;
-  --ui-accent-soft: rgba(43, 196, 163, 0.16);
-  --ui-amber: #f3c06b;
-  --ui-border: rgba(240, 242, 245, 0.12);
-  --ui-border-strong: rgba(240, 242, 245, 0.2);
-  --ui-shadow-sm: 0 12px 24px rgba(4, 6, 10, 0.55);
-  --ui-shadow-md: 0 22px 40px rgba(4, 6, 10, 0.6);
-  --ui-shadow-lg: 0 36px 64px rgba(4, 6, 10, 0.65);
+  --ui-bg: #0f1116;
+  --ui-bg-soft: #151a22;
+  --ui-surface: #1b2230;
+  --ui-surface-2: #222b3a;
+  --ui-ink: #f4f6f9;
+  --ui-ink-soft: #c0c7d4;
+  --ui-ink-fade: #8e98aa;
+  --ui-brand: #4f8bff;
+  --ui-brand-dark: #2f6ae6;
+  --ui-brand-soft: rgba(79, 139, 255, 0.18);
+  --ui-amber: #ff9b4a;
+  --ui-border: rgba(244, 246, 249, 0.12);
+  --ui-border-strong: rgba(244, 246, 249, 0.2);
+  --ui-shadow-sm: 0 12px 24px rgba(6, 8, 12, 0.55);
+  --ui-shadow-md: 0 24px 40px rgba(6, 8, 12, 0.6);
+  --ui-shadow-lg: 0 36px 64px rgba(6, 8, 12, 0.65);
 }
 
 body {
@@ -77,18 +77,18 @@ body {
   min-height: 100%;
   background-color: var(--ui-bg);
   background-image:
-    radial-gradient(circle at 12% 8%, rgba(31, 156, 138, 0.16), transparent 38%),
-    radial-gradient(circle at 85% 10%, rgba(243, 180, 77, 0.18), transparent 40%),
-    linear-gradient(140deg, rgba(255, 255, 255, 0.8), rgba(246, 247, 251, 0.98));
+    radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.14), transparent 40%),
+    radial-gradient(circle at 85% 10%, rgba(255, 143, 61, 0.18), transparent 42%),
+    linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(244, 246, 249, 0.98));
   background-attachment: fixed;
 }
 
 .dark #app,
 .dark .VPApp {
   background-image:
-    radial-gradient(circle at 12% 8%, rgba(43, 196, 163, 0.14), transparent 40%),
-    radial-gradient(circle at 85% 10%, rgba(243, 192, 107, 0.12), transparent 40%),
-    linear-gradient(140deg, rgba(14, 17, 22, 0.95), rgba(10, 12, 16, 0.98));
+    radial-gradient(circle at 12% 8%, rgba(79, 139, 255, 0.14), transparent 42%),
+    radial-gradient(circle at 85% 10%, rgba(255, 155, 74, 0.14), transparent 44%),
+    linear-gradient(140deg, rgba(12, 14, 18, 0.98), rgba(10, 12, 16, 0.98));
 }
 
 #app::before,
@@ -98,37 +98,33 @@ body {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(transparent 23px, rgba(27, 31, 38, 0.035) 24px),
-    linear-gradient(90deg, transparent 23px, rgba(27, 31, 38, 0.035) 24px);
+    linear-gradient(transparent 23px, rgba(16, 20, 24, 0.035) 24px),
+    linear-gradient(90deg, transparent 23px, rgba(16, 20, 24, 0.035) 24px);
   background-size: 24px 24px;
-  opacity: 0.5;
+  opacity: 0.35;
   z-index: 0;
 }
 
 .dark #app::before,
 .dark .VPApp::before {
   background-image:
-    linear-gradient(transparent 23px, rgba(240, 242, 245, 0.06) 24px),
-    linear-gradient(90deg, transparent 23px, rgba(240, 242, 245, 0.06) 24px);
-  opacity: 0.3;
+    linear-gradient(transparent 23px, rgba(244, 246, 249, 0.06) 24px),
+    linear-gradient(90deg, transparent 23px, rgba(244, 246, 249, 0.06) 24px);
+  opacity: 0.25;
 }
 
 .VPNav {
-  position: static;
+  position: static !important;
   border-bottom: 1px solid var(--ui-border);
   background: var(--ui-surface);
   z-index: 5;
-  top: auto;
-  left: auto;
-  right: auto;
-  overflow: visible;
 }
 
 .VPNavBar {
-  position: static;
-  height: auto;
-  min-height: 0;
-  padding: 0.8rem 0;
+  position: static !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0.85rem 0;
   background: transparent;
   backdrop-filter: none;
   overflow: visible;
@@ -146,6 +142,7 @@ body {
 .VPNavBar .container {
   flex-wrap: wrap;
   row-gap: 0.6rem;
+  column-gap: 0.8rem;
   align-items: center;
 }
 
@@ -164,7 +161,7 @@ body {
 
 .VPNavBarTitle .title {
   font-family: var(--vp-font-family-title);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   font-size: 1.1rem;
 }
@@ -189,11 +186,14 @@ body {
 }
 
 .VPNavBarMenuLink {
-  padding: 0.35rem 0.65rem;
+  padding: 0.32rem 0.7rem;
   border-radius: var(--ui-radius-sm);
   font-weight: 600;
   letter-spacing: 0.01em;
   white-space: nowrap;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .VPNavBarMenuLink.active {
@@ -243,32 +243,34 @@ body {
 
 .VPHomeHero {
   position: relative;
-  padding: 3.5rem 0 2.5rem;
+  padding: 3.4rem 0 2.3rem;
 }
 
 .VPHomeHero::before {
   content: '';
   position: absolute;
   inset: 18% 0 auto 0;
-  height: 210px;
+  height: 200px;
   border-radius: var(--ui-radius-xl);
-  background: linear-gradient(120deg, rgba(31, 156, 138, 0.2), rgba(243, 180, 77, 0.24));
-  filter: blur(16px);
+  background: linear-gradient(120deg, rgba(37, 99, 235, 0.2), rgba(255, 143, 61, 0.24));
+  filter: blur(18px);
   opacity: 0.8;
   z-index: -1;
 }
 
 .VPHomeHero .name {
   font-family: var(--vp-font-family-title);
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(2.5rem, 6vw, 4.1rem);
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .VPHomeHero .text {
   font-weight: 600;
-  font-size: clamp(1.1rem, 3vw, 1.9rem);
+  font-size: clamp(1.05rem, 3vw, 1.8rem);
   color: var(--ui-ink);
   white-space: nowrap;
   overflow: hidden;
@@ -340,8 +342,8 @@ body {
   place-items: center;
   border-radius: var(--ui-radius-sm);
   font-weight: 700;
-  background: var(--ui-accent-soft);
-  color: var(--ui-accent-strong);
+  background: var(--ui-brand-soft);
+  color: var(--ui-brand-dark);
 }
 
 .VPDoc h1,
@@ -357,7 +359,7 @@ body {
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   align-items: start;
-  padding: 2.5rem;
+  padding: 2.4rem;
   border-radius: var(--ui-radius-xl);
   background: var(--ui-surface);
   border: 1px solid var(--ui-border);
@@ -375,7 +377,7 @@ body {
   width: 210px;
   height: 210px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(31, 156, 138, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.2), transparent 70%);
   opacity: 0.6;
 }
 
@@ -385,7 +387,7 @@ body {
 }
 
 .page-hero__content h1 {
-  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
   margin-bottom: 0.75rem;
   white-space: nowrap;
   overflow: hidden;
@@ -412,7 +414,7 @@ body {
 }
 
 .page-hero__card {
-  padding: 1.2rem 1.3rem;
+  padding: 1.15rem 1.3rem;
   border-radius: var(--ui-radius-md);
   border: 1px solid var(--ui-border);
   background: var(--ui-surface-2);
@@ -444,10 +446,10 @@ body {
 
 .home-cta {
   margin: 4rem 0 1rem;
-  padding: 2.3rem;
+  padding: 2.2rem;
   border-radius: var(--ui-radius-xl);
   border: 1px solid var(--ui-border);
-  background: linear-gradient(130deg, rgba(31, 156, 138, 0.18), rgba(243, 180, 77, 0.2));
+  background: linear-gradient(130deg, rgba(37, 99, 235, 0.16), rgba(255, 143, 61, 0.18));
   box-shadow: var(--ui-shadow-md);
   text-align: center;
 }
@@ -489,10 +491,10 @@ body {
   background: var(--ui-surface);
 }
 
-@keyframes slide-up {
+@keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -501,7 +503,7 @@ body {
 }
 
 .animate-rise {
-  animation: slide-up 0.7s ease both;
+  animation: rise 0.7s ease both;
 }
 
 @media (max-width: 960px) {
@@ -520,11 +522,11 @@ body {
 
 @media (max-width: 640px) {
   .VPHomeHero .text {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
 
   .page-hero__content h1 {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
   }
 }
 
