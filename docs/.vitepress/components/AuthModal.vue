@@ -208,7 +208,7 @@ async function signInWithGoogle() {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
   border: 1px solid var(--ui-border);
   font-size: 1.4rem;
   cursor: pointer;
@@ -333,7 +333,7 @@ input:focus {
 .google-button {
   width: 100%;
   padding: 0.8rem;
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
   color: #333;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
@@ -362,5 +362,6 @@ input:focus {
   cursor: not-allowed;
 }
 </style>
+
 
 

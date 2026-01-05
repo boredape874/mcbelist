@@ -384,7 +384,7 @@ const isUserAdmin = computed(() => {
   padding: 0.35rem;
   border-radius: var(--ui-radius-sm);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
 }
 
 .tab {
@@ -514,7 +514,7 @@ const isUserAdmin = computed(() => {
 .tag {
   display: inline-flex;
   padding: 0.25rem 0.6rem;
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
   font-size: 0.72rem;
@@ -540,7 +540,7 @@ const isUserAdmin = computed(() => {
 
 .order-control {
   padding: 0.75rem;
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
   border-radius: var(--ui-radius-md);
   border: 1px solid var(--ui-border);
 }
@@ -609,5 +609,6 @@ const isUserAdmin = computed(() => {
   background: #dc2626;
 }
 </style>
+
 
 

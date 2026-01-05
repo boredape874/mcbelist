@@ -57,7 +57,7 @@ async function handleLogout() {
   padding: 0.35rem 0.6rem;
   border-radius: var(--ui-radius-sm);
   border: 1px solid var(--ui-border);
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
 }
 
 .user-details {
@@ -110,5 +110,6 @@ async function handleLogout() {
   border-color: var(--vp-c-brand);
 }
 </style>
+
 
 

@@ -412,7 +412,7 @@ async function submitCommunity() {
   padding: 0.4rem 0.9rem;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
   color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.3s;
@@ -547,5 +547,6 @@ async function submitCommunity() {
   }
 }
 </style>
+
 
 

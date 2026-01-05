@@ -352,7 +352,7 @@ async function toggleDislike(community) {
   padding: 0.4rem 0.9rem;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
   color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.3s;
@@ -407,7 +407,7 @@ async function toggleDislike(community) {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--vp-c-brand), var(--ui-amber));
+  background: linear-gradient(90deg, var(--vp-c-brand), var(--ui-heat));
 }
 
 .community-card:hover {
@@ -481,7 +481,7 @@ async function toggleDislike(community) {
 .tag {
   display: inline-flex;
   padding: 0.25rem 0.6rem;
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
   font-size: 0.72rem;
@@ -528,7 +528,7 @@ async function toggleDislike(community) {
   padding: 0.35rem 0.85rem;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
-  background: var(--ui-surface-2);
+  background: var(--ui-surface-muted);
   color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.3s;
@@ -577,5 +577,6 @@ async function toggleDislike(community) {
   }
 }
 </style>
+
 
 
