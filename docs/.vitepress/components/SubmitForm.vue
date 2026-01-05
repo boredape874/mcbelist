@@ -14,14 +14,14 @@ const formData = ref({
   category: CATEGORIES[0],
   link: '',
   tags: [],
-  image: null
+  imageUrl: ''
 })
 
 const imagePreview = ref(null)
+const imageFile = ref(null)
 const message = ref('')
 const messageType = ref('')
 const submitting = ref(false)
-const imageFile = ref(null)
 
 function handleImageChange(event) {
   const file = event.target.files[0]
@@ -50,7 +50,8 @@ function handleImageChange(event) {
 function removeImage() {
   imageFile.value = null
   imagePreview.value = null
-  formData.value.image = null
+  const fileInput = document.getElementById('image')
+  if (fileInput) fileInput.value = ''
 }
 
 function toggleTag(tag) {
@@ -127,7 +128,7 @@ async function submitCommunity() {
       category: CATEGORIES[0],
       link: '',
       tags: [],
-      image: null
+      imageUrl: ''
     }
     removeImage()
   } catch (error) {
