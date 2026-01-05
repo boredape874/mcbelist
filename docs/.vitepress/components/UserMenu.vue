@@ -3,7 +3,10 @@
     <div v-if="loading" class="loading">...</div>
 
     <div v-else-if="user" class="user-info">
-      <span class="user-email">{{ user.email }}</span>
+      <div class="user-details">
+        <span class="user-email">{{ user.email }}</span>
+        <span class="user-uid" :title="user.uid">UID: {{ user.uid.slice(0, 8) }}...</span>
+      </div>
       <button @click="handleLogout" class="logout-button">로그아웃</button>
     </div>
 
@@ -53,9 +56,22 @@ async function handleLogout() {
   gap: 0.75rem;
 }
 
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .user-email {
   font-size: 0.875rem;
-  color: var(--vp-c-text-2);
+  color: var(--vp-c-text-1);
+}
+
+.user-uid {
+  font-size: 0.75rem;
+  color: var(--vp-c-text-3);
+  font-family: monospace;
+  cursor: help;
 }
 
 .login-button,
